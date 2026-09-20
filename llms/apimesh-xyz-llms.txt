@@ -1,0 +1,152 @@
+# apimesh.xyz
+
+> APIMesh — 23 pay-per-call web analysis APIs for AI agents and developers. Supports x402 (USDC on Base), Stripe MPP, and API key payments.
+
+## Tools
+
+### email_verify
+- **Endpoint:** GET https://email-verify.apimesh.xyz/check
+- **Price:** $0.001 per call
+- **What it does:** Verify email addresses — syntax, MX record check, disposable domain detection, role-address detection, and deliverability assessment.
+- **Free preview:** GET https://email-verify.apimesh.xyz/preview — limited results, no payment required.
+
+### tech_stack
+- **Endpoint:** GET https://tech-stack.apimesh.xyz/check
+- **Price:** $0.003 per call
+- **What it does:** Detect website technology stack — CMS, frameworks, analytics, CDN, hosting, JS libraries, and CSS frameworks from headers and HTML.
+- **Free preview:** GET https://tech-stack.apimesh.xyz/preview — limited results, no payment required.
+
+### mock_jwt_generator
+- **Endpoint:** POST https://mock-jwt-generator.apimesh.xyz/generate
+- **Price:** $0.001 per call
+- **What it does:** mock-jwt-generator API
+
+### email_security
+- **Endpoint:** GET https://email-security.apimesh.xyz/check
+- **Price:** $0.01 per call
+- **What it does:** Validate SPF, DKIM (probes 10 common selectors), and DMARC records for any domain. Detects email provider and grades overall email security.
+- **Free preview:** GET https://email-security.apimesh.xyz/preview — limited results, no payment required.
+
+### robots_txt_parser
+- **Endpoint:** GET https://robots-txt-parser.apimesh.xyz/analyze
+- **Price:** $0.002 per call
+- **What it does:** Website URL to analyze robots.txt
+
+### web_checker
+- **Endpoint:** GET https://web-checker.apimesh.xyz/check
+- **Price:** $0.005 per call
+- **What it does:** Check brand/product name availability across 5 TLDs (.com, .io, .dev, .app, .xyz), GitHub, npm, PyPI, and Reddit in one call.
+- **Free preview:** GET https://web-checker.apimesh.xyz/preview — limited results, no payment required.
+
+### seo_audit
+- **Endpoint:** GET https://seo-audit.apimesh.xyz/check
+- **Price:** $0.003 per call
+- **What it does:** Comprehensive on-page SEO analysis — title, meta, headings, images, links, OG tags, JSON-LD, and robots directives with a 0-100 score.
+- **Free preview:** GET https://seo-audit.apimesh.xyz/preview — limited results, no payment required.
+
+### brand_assets
+- **Endpoint:** GET https://brand-assets.apimesh.xyz/check
+- **Price:** $0.002 per call
+- **What it does:** Extract brand assets from any domain — logo URL, favicon, theme colors, OG image, and site name.
+- **Free preview:** GET https://brand-assets.apimesh.xyz/preview — limited results, no payment required.
+
+### user_agent_analyzer
+- **Endpoint:** GET https://user-agent-analyzer.apimesh.xyz/analyze
+- **Price:** $0.002 per call
+- **What it does:** user-agent-analyzer API
+
+### redirect_chain
+- **Endpoint:** GET https://redirect-chain.apimesh.xyz/check
+- **Price:** $0.001 per call
+- **What it does:** Trace the full HTTP redirect chain for any URL with per-hop status codes, latency, and loop detection.
+- **Free preview:** GET https://redirect-chain.apimesh.xyz/preview — limited results, no payment required.
+
+### regex_builder
+- **Endpoint:** POST https://regex-builder.apimesh.xyz/build
+- **Price:** $0.005 per call
+- **What it does:** Provides an interface to construct and test regular expressions.
+
+### swagger_docs_creator
+- **Endpoint:** POST https://swagger-docs-creator.apimesh.xyz/generate
+- **Price:** $0.002 per call
+- **What it does:** Generate basic Swagger (OpenAPI 3.0.x) documentation for your API endpoint.
+
+### core_web_vitals
+- **Endpoint:** GET https://core-web-vitals.apimesh.xyz/check
+- **Price:** $0.005 per call
+- **What it does:** Google PageSpeed Insights analysis — Lighthouse performance, accessibility, SEO scores plus LCP, CLS, INP field data from Chrome UX Report.
+- **Free preview:** GET https://core-web-vitals.apimesh.xyz/preview — limited results, no payment required.
+
+### web_resource_validator
+- **Endpoint:** GET https://web-resource-validator.apimesh.xyz/
+- **Price:** $0.001 per call
+- **What it does:** Validate presence and correctness of common web resources like robots.txt, sitemap.xml, openapi.json, agent.json
+
+### status_code_checker
+- **Endpoint:** GET https://status-code-checker.apimesh.xyz/check
+- **Price:** $0.001 per call
+- **What it does:** Checks the status code of any valid URL, returning accessibility and HTTP response info.
+
+### website_security_header_info
+- **Endpoint:** GET https://website-security-header-info.apimesh.xyz/
+- **Price:** $0.01 per call
+- **What it does:** website-security-header-info API
+
+### yaml_validator
+- **Endpoint:** POST https://yaml-validator.apimesh.xyz/validate
+- **Price:** $0.002 per call
+- **What it does:** yaml-validator API
+
+### favicon_checker
+- **Endpoint:** GET https://favicon-checker.apimesh.xyz/check
+- **Price:** $0.002 per call
+- **What it does:** favicon-checker API
+
+### security_headers
+- **Endpoint:** GET https://security-headers.apimesh.xyz/check
+- **Price:** $0.005 per call
+- **What it does:** Audit 10 HTTP security headers (CSP, HSTS, X-Frame-Options, etc.) with A+ to F grading and remediation suggestions.
+- **Free preview:** GET https://security-headers.apimesh.xyz/preview — limited results, no payment required.
+
+### http_status_checker
+- **Endpoint:** GET https://http-status-checker.apimesh.xyz/check
+- **Price:** $0.002 per call
+- **What it does:** Checks the HTTP status of a given URL to ensure it is accessible and returns the expected response code.
+
+### website_vulnerability_scan
+- **Endpoint:** GET https://website-vulnerability-scan.apimesh.xyz/scan
+- **Price:** $0.05 per call
+- **What it does:** website-vulnerability-scan API
+
+### indexability
+- **Endpoint:** GET https://indexability.apimesh.xyz/check
+- **Price:** $0.001 per call
+- **What it does:** 5-layer indexability analysis — robots.txt, HTTP status, meta robots, X-Robots-Tag, and canonical. Returns whether a URL is indexable.
+- **Free preview:** GET https://indexability.apimesh.xyz/preview — limited results, no payment required.
+
+### microservice_health_check
+- **Endpoint:** POST https://microservice-health-check.apimesh.xyz/check
+- **Price:** $0.003 per call
+- **What it does:** microservice-health-check API
+- **Free preview:** GET https://microservice-health-check.apimesh.xyz/preview — limited results, no payment required.
+
+
+## Payment Methods
+
+1. **x402** — pay per call with USDC on Base. No signup needed. Send payment header with request.
+2. **MPP** — Stripe Machine Payments Protocol. Cards + stablecoins.
+3. **API key** — traditional auth. Sign up at https://apimesh.xyz/signup, buy credits via Stripe.
+
+## Discovery
+
+- MCP server (npm): `npx @mbeato/apimesh-mcp-server`
+- x402 discovery: https://apimesh.xyz/.well-known/x402.json
+- AI plugin manifest: https://apimesh.xyz/.well-known/ai-plugin.json
+- OpenAPI spec: https://apimesh.xyz/.well-known/openapi.json
+- GitHub: https://github.com/mbeato/conway
+
+## How to Use
+
+1. Try a free preview: `GET https://check.apimesh.xyz/preview?name=myapp`
+2. GET any paid endpoint — receive 402 Payment Required with payment details
+3. Include payment header and retry — receive the response

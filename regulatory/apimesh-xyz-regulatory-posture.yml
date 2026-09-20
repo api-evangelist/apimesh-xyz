@@ -1,0 +1,44 @@
+generated: '2026-09-19'
+method: searched
+probe: true
+source: https://apimesh.xyz/legal/privacy
+note: >-
+  Six legal pages are served under /legal/ (terms, privacy, acceptable-use, refund, cookies,
+  abuse — all "Effective: April 2026") and were read in full. Two carry the substance the
+  signals require. Everything else was probed and is absent: /accessibility, /legal/subprocessors,
+  /legal/dpa, /privacy/requests, /transparency, /security/sbom, /ai, /ai/transparency and
+  /docs/data-residency all return the apex 401 catch-all. Third parties (Stripe, Resend,
+  Hetzner) are named inside Privacy §3/§9 with their purposes but not as a dated subprocessor
+  table, so subprocessors is deliberately NOT recorded. The privacy policy states "we do not
+  sell your data" and offers a CCPA opt-out right but says nothing about Global Privacy Control,
+  so gpc is not recorded. Data retention (request logs 90 days, deletion within 30 days) and a
+  13+ age statement are in the policy but map to no signal here.
+signals:
+  data_subject_request:
+    url: https://apimesh.xyz/legal/privacy
+    mechanism: 'email support@apimesh.xyz; Data Protection Officer privacy@apimesh.xyz'
+    rights_stated: [access, rectify, erase, port, restrict, object, CCPA know, CCPA delete, CCPA opt-out of sale]
+    stated_timeline: 'After account deletion request: all data deleted within 30 days'
+    evidence:
+    - {source: https://apimesh.xyz/legal/privacy, keywords: ['Your Rights -- GDPR', 'Your Rights -- CCPA', 'To exercise any of these rights, email support@apimesh.xyz', 'Data Protection Officer']}
+  notice_and_action:
+    url: https://apimesh.xyz/legal/abuse
+    mechanism: 'email abuse@apimesh.xyz with contact, description, endpoint, timestamps, evidence; DMCA notice and counter-notice procedure'
+    stated_sla: 'Acknowledgment: Within 48 hours of receiving a report; Investigation: Completed within 5 business days'
+    evidence:
+    - {source: https://apimesh.xyz/legal/abuse, keywords: ['DMCA and Abuse Reporting', 'Reporting Abuse', 'DMCA Takedown', 'Counter-Notice', 'Response Timeline']}
+probed_absent:
+- {url: https://apimesh.xyz/accessibility, status: 401}
+- {url: https://apimesh.xyz/legal/subprocessors, status: 401}
+- {url: https://apimesh.xyz/legal/dpa, status: 401}
+- {url: https://apimesh.xyz/privacy/requests, status: 401}
+- {url: https://apimesh.xyz/transparency, status: 401}
+- {url: https://apimesh.xyz/security/sbom, status: 401}
+- {url: https://apimesh.xyz/ai/transparency, status: 401}
+- {url: https://apimesh.xyz/docs/data-residency, status: 401}
+- {url: https://apimesh.xyz/.well-known/security.txt, status: 404}
+related_statements_not_mapped:
+  data_location: 'Privacy §9: "Data is stored on Hetzner servers ... We rely on standard contractual clauses where applicable" — a hosting statement, not a residency commitment'
+  retention: 'Privacy §4: API request logs retained for 90 days'
+  age: 'Privacy §10: not intended for anyone under 13'
+  cookies: 'Cookie Disclosure: one essential httpOnly session cookie, no tracking, no consent banner'

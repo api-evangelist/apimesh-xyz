@@ -1,0 +1,95 @@
+{
+  "$schema": "https://apimesh.xyz/.well-known/mpp.schema.json",
+  "name": "APIMesh",
+  "description": "Pay-per-call API marketplace. 4 web-analysis, SEO, security, and devops APIs for agents and developers.",
+  "provider": {
+    "name": "APIMesh",
+    "url": "https://apimesh.xyz",
+    "contact": "c@vtxathlete.com"
+  },
+  "payment_methods": [
+    {
+      "protocol": "x402",
+      "version": "1",
+      "networks": [
+        "base-mainnet"
+      ],
+      "asset": "USDC",
+      "discovery": "Per-endpoint via WWW-Authenticate: Payment on 402 responses"
+    },
+    {
+      "protocol": "mpp",
+      "version": "draft-ryan-httpauth-payment",
+      "discovery": "OpenAPI x-mpp annotations + WWW-Authenticate: Payment on 402"
+    },
+    {
+      "protocol": "api-key",
+      "purchase_url": "https://apimesh.xyz/signup",
+      "accepts": [
+        "stripe"
+      ]
+    }
+  ],
+  "discovery": {
+    "openapi": "https://apimesh.xyz/openapi.json",
+    "agent_card": "https://apimesh.xyz/.well-known/agent-card.json",
+    "llms_txt": "https://apimesh.xyz/llms.txt",
+    "api_catalog": "https://apimesh.xyz/.well-known/api-catalog"
+  },
+  "apis": [
+    {
+      "name": "agentcontext",
+      "endpoint": "https://agentcontext.apimesh.xyz/check",
+      "method": "GET",
+      "price_usd": 0.01,
+      "description": "Agentcontext — pay-per-call API on apimesh.xyz",
+      "category": "web-analysis",
+      "tags": [
+        "web-analysis",
+        "agentcontext"
+      ]
+    },
+    {
+      "name": "agentsmd",
+      "endpoint": "https://agentsmd.apimesh.xyz/check",
+      "method": "GET",
+      "price_usd": 0.01,
+      "description": "Agentsmd — pay-per-call API on apimesh.xyz",
+      "category": "web-analysis",
+      "tags": [
+        "web-analysis",
+        "agentsmd"
+      ]
+    },
+    {
+      "name": "sigdebug",
+      "endpoint": "https://sigdebug.apimesh.xyz/check",
+      "method": "GET",
+      "price_usd": 0.01,
+      "description": "Sigdebug — pay-per-call API on apimesh.xyz",
+      "category": "web-analysis",
+      "tags": [
+        "web-analysis",
+        "sigdebug"
+      ]
+    },
+    {
+      "name": "stripesig",
+      "endpoint": "https://stripesig.apimesh.xyz/check",
+      "method": "GET",
+      "price_usd": 0.01,
+      "description": "Stripesig — pay-per-call API on apimesh.xyz",
+      "category": "devops",
+      "tags": [
+        "devops",
+        "stripesig"
+      ]
+    }
+  ],
+  "categories": [
+    "devops",
+    "web-analysis"
+  ],
+  "api_count": 4,
+  "generated_at": "2026-05-11T21:42:24.816Z"
+}

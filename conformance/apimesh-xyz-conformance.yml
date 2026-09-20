@@ -1,0 +1,63 @@
+generated: '2026-09-19'
+method: searched
+source: https://apimesh.xyz/.well-known/agent-card.json
+derived_from: openapi/_original/apimesh-xyz-openapi.json
+note: >-
+  APIMesh's market (web-analysis developer utilities) has no domain standard to declare, so the
+  domain_standard_conformance slot is honestly empty. What the provider does conform to is the
+  agent-payment and agent-discovery layer: x402 (HTTP 402 + USDC on Base), Stripe's Machine
+  Payments Protocol draft, an A2A agent card, an OpenAI-style ai-plugin manifest, llms.txt, and
+  MCP via npm. No OAuth2/OIDC, no RFC 9457 problem details (errors are {"error": "<string>"}),
+  no security.txt. Standards are asserted from documents the provider serves, not from prose.
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: https://apimesh.xyz/.well-known/openapi.json declares openapi 3.1.0 (and https://apimesh.xyz/openapi.json a second 3.1.0 document)
+  note: minimal — 3 operations, no operationIds, no schemas, no securitySchemes
+- id: x402
+  conforms: true
+  evidence: https://apimesh.xyz/.well-known/x402.json (network eip155:8453, 23 APIs) and /.well-known/x402 (21 resources); agent card securitySchemes.x402 {protocol x402, version 1, networks [base-mainnet], asset USDC}
+  note: the 402 challenge itself could not be observed on 2026-09-19 because every paid endpoint host has been retired; the discovery documents remain served
+- id: mpp-draft-ryan-httpauth-payment
+  conforms: true
+  evidence: https://apimesh.xyz/.well-known/mpp and per-API /.well-known/mpp on agentsmd.apimesh.xyz and stripesig.apimesh.xyz; agent card securitySchemes.mpp version draft-ryan-httpauth-payment
+- id: a2a-agent-card
+  conforms: true
+  evidence: https://apimesh.xyz/.well-known/agent-card.json — A2A 1.0.0 shape, graded conformant in a2a/apimesh-xyz-a2a.yml (skills unreachable)
+- id: ai-plugin-manifest
+  conforms: true
+  evidence: https://apimesh.xyz/.well-known/ai-plugin.json schema_version v1, api.type openapi
+- id: llms-txt
+  conforms: true
+  evidence: https://apimesh.xyz/llms.txt and /llms-full.txt served as text/plain in llms.txt format
+- id: mcp
+  conforms: true
+  evidence: '@mbeato/apimesh-mcp-server on npm, io.github.mbeato/apimesh in registry.modelcontextprotocol.io (server.json schema 2025-12-11, transport stdio)'
+- id: oauth2
+  conforms: false
+  evidence: no oauth2 securityScheme in either OpenAPI; /.well-known/oauth-authorization-server and /.well-known/oauth-protected-resource 404 on every host
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration 404
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: 'observed error bodies are application/json {"error": "<message>"} (400/404) and text/plain "Unauthorized" (401); no application/problem+json'
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt 404 on apimesh.xyz, api., mcp., agentsmd., stripesig.
+- id: rfc9727-api-catalog
+  conforms: false
+  evidence: /.well-known/api-catalog 404 although the provider's own x-discovery block in /openapi.json and /.well-known/mpp names it
+- id: apis-json
+  conforms: false
+  evidence: /apis.json 401, /.well-known/apis.json 404
+- id: rate-limit-headers
+  conforms: true
+  evidence: 'x-ratelimit-limit and x-ratelimit-remaining returned on POST agentsmd.apimesh.xyz/normalize (60), POST stripesig.apimesh.xyz/check (60) and GET apimesh.xyz/wallet/{address}/history (30) on 2026-09-19'
+  note: the legacy X-RateLimit-* names, not the IETF RateLimit header fields; no reset field observed
+- id: idempotency-key
+  conforms: false
+  evidence: no Idempotency-Key header documented anywhere; the live endpoints are pure computations (see conventions/)
+domain_standard:
+  applicable: false
+  note: no sector standard exists for web-analysis developer utilities; reward-only slot left empty rather than invented

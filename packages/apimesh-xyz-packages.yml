@@ -1,0 +1,56 @@
+generated: '2026-09-19'
+method: searched
+source: https://registry.npmjs.org/@mbeato%2Fapimesh-mcp-server
+docs: https://github.com/mbeato/APIMesh#install-the-mcp-server
+note: >-
+  Three first-party npm packages, all published under the operator's @mbeato scope (the same
+  GitHub account that owns github.com/mbeato/APIMesh and is named on apimesh.xyz). No PyPI
+  (pypi.org/pypi/apimesh/json 404), Maven, NuGet, Go, RubyGems, Packagist or crates.io packages
+  exist; the unscoped npm "apimesh" (1.0.0, 2016) and "@adobe-apimesh/*" belong to unrelated
+  projects and are excluded. None of the three is a REST client SDK — they are an MCP server, a
+  CLI/library, and a second MCP server — so SDKs is wired for the count but a buyer wanting a
+  typed HTTP client has nothing to install. version/published read from registry.npmjs.org on
+  2026-09-19. The newest release is 2026-04-29; the marketplace the largest package wraps was
+  retired 2026-05-11, so the package's tools now call 404 hosts.
+packages:
+- language: javascript
+  registry: npm
+  name: '@mbeato/apimesh-mcp-server'
+  url: https://www.npmjs.com/package/@mbeato/apimesh-mcp-server
+  install: npx @mbeato/apimesh-mcp-server
+  official: true
+  kind: mcp-server
+  version: 1.8.2
+  published: '2026-04-26'
+  first_published: '2026-03-01'
+  release_count: 10
+  repository: https://github.com/mbeato/APIMesh/tree/main/mcp-server
+  license: MIT
+  bin: apimesh-mcp
+  dependencies: ['@modelcontextprotocol/sdk ^1.27.1', 'zod ^3.24.0']
+- language: javascript
+  registry: npm
+  name: '@mbeato/agentcontext'
+  url: https://www.npmjs.com/package/@mbeato/agentcontext
+  install: npx @mbeato/agentcontext
+  official: true
+  kind: cli+library
+  version: 0.1.2
+  published: '2026-04-29'
+  repository: https://github.com/mbeato/agentcontext
+  homepage: https://agentsmd.apimesh.xyz
+  license: MIT
+  note: CLI (inspect / sync / convert) and TypeScript library (ingest, render, renderMany) behind the agentsmd wedge; see cli/apimesh-xyz-cli.yml.
+- language: javascript
+  registry: npm
+  name: '@mbeato/agentcontext-mcp'
+  url: https://www.npmjs.com/package/@mbeato/agentcontext-mcp
+  install: npx -y @mbeato/agentcontext-mcp
+  official: true
+  kind: mcp-server
+  version: 0.1.2
+  published: '2026-04-29'
+  repository: https://github.com/mbeato/agentcontext-mcp
+  homepage: https://agentsmd.apimesh.xyz
+  license: MIT
+  bin: agentcontext-mcp

@@ -1,0 +1,1015 @@
+[
+ {
+  "name": "web_checker",
+  "description": "Check if a brand name is available across 5 domain TLDs (.com, .io, .xyz, .dev, .ai), GitHub, npm, PyPI, and Reddit in one call. Free preview: GET https://check.apimesh.xyz/preview?name=... returns .com availability only",
+  "params": [
+   {
+    "name": "name",
+    "type": "string",
+    "required": true,
+    "description": "The brand or product name to check"
+   }
+  ]
+ },
+ {
+  "name": "http_status_checker",
+  "description": "Check the live HTTP status of any URL, optionally verify against an expected code. Useful for uptime monitoring, redirect validation, and link checking",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": "The URL to check"
+   },
+   {
+    "name": "expected",
+    "type": "number",
+    "required": false,
+    "description": "Expected HTTP status code"
+   }
+  ]
+ },
+ {
+  "name": "favicon_checker",
+  "description": "Check whether a website has a favicon and get its URL, format, and status. Useful for link previews and site branding validation",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": "The URL to check for a favicon"
+   }
+  ]
+ },
+ {
+  "name": "microservice_health_check",
+  "description": "Check health and response times of up to 10 service URLs in parallel. Free preview: GET https://microservice-health-check.apimesh.xyz/preview?url=... checks 1 service for free",
+  "params": []
+ },
+ {
+  "name": "robots_txt_parser",
+  "description": "Fetch and parse a website's robots.txt into structured rules, sitemaps, and crawl directives",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": "The website URL whose robots.txt to parse"
+   }
+  ]
+ },
+ {
+  "name": "core_web_vitals",
+  "description": "Get Core Web Vitals and Lighthouse performance scores for any URL. Returns LCP, CLS, INP field data plus performance, accessibility, best-practices, and SEO scores. Free preview: GET https://core-web-vitals.apimesh.xyz/preview?url=... returns performance score only",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": "The URL to analyze"
+   }
+  ]
+ },
+ {
+  "name": "security_headers",
+  "description": "Audit HTTP security headers for any URL. Checks 10 headers (CSP, HSTS, X-Frame-Options, etc.) with weighted grading A+ through F and remediation suggestions. Free preview: GET https://security-headers.apimesh.xyz/preview?url=... checks 3 key headers for free",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": "The URL to audit"
+   }
+  ]
+ },
+ {
+  "name": "redirect_chain",
+  "description": "Trace the full redirect chain for any URL. Returns each hop with status code, location, and latency. Detects loops and extracts the final canonical URL. Free preview: GET https://redirect-chain.apimesh.xyz/preview?url=... traces up to 5 hops for free",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": "The URL to trace"
+   }
+  ]
+ },
+ {
+  "name": "email_security",
+  "description": "Check email security configuration for any domain. Analyzes SPF, DMARC, DKIM (probes 10 common selectors), and MX records with provider detection. Free preview: GET https://email-security.apimesh.xyz/preview?domain=... checks SPF and DMARC for free",
+  "params": [
+   {
+    "name": "domain",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "seo_audit",
+  "description": "Run a comprehensive on-page SEO audit on any URL. Analyzes title, meta description, headings, images, links, content, canonical, OG tags, JSON-LD, and robots directives with a 0-100 score. Free preview: GET https://seo-audit.apimesh.xyz/preview?url=... returns title, meta, H1, and score for free",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": "The URL to audit"
+   }
+  ]
+ },
+ {
+  "name": "indexability_checker",
+  "description": "Check if a URL is indexable by search engines. Performs 5-layer analysis: robots.txt rules, HTTP status, meta robots, X-Robots-Tag, and canonical tag. Free preview: GET https://indexability.apimesh.xyz/preview?url=... checks HTTP status and meta robots for free",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": "The URL to check"
+   }
+  ]
+ },
+ {
+  "name": "brand_assets",
+  "description": "Extract brand assets from any domain. Returns logo URL, favicon, theme colors, OG image, and site name. Free preview: GET https://brand-assets.apimesh.xyz/preview?domain=... returns Google favicon URL for free",
+  "params": [
+   {
+    "name": "domain",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "email_verify",
+  "description": "Verify an email address: syntax validation, MX record check, disposable domain detection, role-address detection, free provider detection, and deliverability assessment. Free preview: GET https://email-verify.apimesh.xyz/preview?email=... checks syntax and disposable status for free",
+  "params": [
+   {
+    "name": "email",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "tech_stack",
+  "description": "Detect the technology stack of any website. Analyzes HTTP headers and HTML to identify CMS, frameworks, languages, analytics, CDN, hosting, JavaScript libraries, and CSS frameworks. Free preview: GET https://tech-stack.apimesh.xyz/preview?url=... detects technologies from HTTP headers only",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "wallet_usage",
+  "description": "Check your wallet's APIMesh spend and cap status. Returns daily/7d/30d spend totals, active spend cap with remaining budget, and recent requests. No authentication required.",
+  "params": [
+   {
+    "name": "address",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "web_resource_validator",
+  "description": "Validate presence and correctness of common web resources (robots.txt, sitemap.xml, openapi.json, agent.json) for any domain. Returns availability status for the requested resource.",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "website_security_header_info",
+  "description": "Analyze security-related HTTP headers for any website. Checks Content-Security-Policy, Strict-Transport-Security, X-Content-Type-Options, X-Frame-Options, X-XSS-Protection, Referrer-Policy, and Permissions-Policy with issue detection.",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "website_vulnerability_scan",
+  "description": "Comprehensive website security audit combining hostname analysis, SSL certificate validation, HTTP security headers, cookie security, and Content Security Policy analysis. Returns an overall security score (0-100) with actionable recommendations. Supports basic, detailed, and full scan levels.",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "mock_jwt_generator",
+  "description": "Generate test JWTs with custom claims and expiry for local development. Returns a signed HS256 token. Useful for testing auth flows without a real identity provider.",
+  "params": [
+   {
+    "name": "secret",
+    "type": "string",
+    "required": true,
+    "description": "HMAC secret for HS256 signing"
+   },
+   {
+    "name": "expiresInSeconds",
+    "type": "number",
+    "required": false,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "regex_builder",
+  "description": "Build and test regex patterns. POST /build creates a regex from a pattern string or components. POST /test validates a pattern against test strings. Useful for generating and debugging regular expressions.",
+  "params": [
+   {
+    "name": "pattern",
+    "type": "string",
+    "required": true,
+    "description": "Regex pattern string"
+   },
+   {
+    "name": "flags",
+    "type": "string",
+    "required": false,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "status_code_checker",
+  "description": "Check the live HTTP status code of any URL. Returns the actual status code, reason phrase, and response headers. Simpler than http_status_checker \u2014 no expected-code validation.",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "swagger_docs_creator",
+  "description": "Generate OpenAPI 3.0 documentation for an API endpoint. Provide the path, method, summary, and optionally parameters/requestBody/responses to get a complete OpenAPI spec fragment.",
+  "params": [
+   {
+    "name": "path",
+    "type": "string",
+    "required": true,
+    "description": null
+   },
+   {
+    "name": "method",
+    "type": "string",
+    "required": true,
+    "description": null
+   },
+   {
+    "name": "summary",
+    "type": "string",
+    "required": true,
+    "description": "Short summary of what the endpoint does"
+   },
+   {
+    "name": "description",
+    "type": "string",
+    "required": false,
+    "description": "Full description of the endpoint"
+   }
+  ]
+ },
+ {
+  "name": "user_agent_analyzer",
+  "description": "Parse a User-Agent string into structured data: browser name/version, OS name/version, device type, and bot detection. Useful for analytics and request filtering.",
+  "params": [
+   {
+    "name": "ua",
+    "type": "string",
+    "required": true,
+    "description": "The User-Agent string to parse"
+   }
+  ]
+ },
+ {
+  "name": "yaml_validator",
+  "description": "Validate YAML syntax and structure. Returns parsed result on success or detailed error with line/column on failure. Useful for CI pipelines and config file validation.",
+  "params": [
+   {
+    "name": "yaml",
+    "type": "string",
+    "required": true,
+    "description": "The YAML string to validate"
+   }
+  ]
+ },
+ {
+  "name": "wallet_set_cap",
+  "description": "Set a spend cap on your wallet. Once the daily or monthly USDC limit is reached, further paid API calls return 429 before payment is attempted. Set limits to null to remove a cap.",
+  "params": [
+   {
+    "name": "address",
+    "type": "string",
+    "required": true,
+    "description": "Your 0x wallet address"
+   },
+   {
+    "name": "daily_limit_usd",
+    "type": "number",
+    "required": true,
+    "description": null
+   },
+   {
+    "name": "monthly_limit_usd",
+    "type": "number",
+    "required": true,
+    "description": null
+   },
+   {
+    "name": "label",
+    "type": "string",
+    "required": false,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "subdomain_vulnerability_rankings",
+  "description": "Paid comprehensive subdomain enumeration and vulnerability ranking",
+  "params": [
+   {
+    "name": "domain",
+    "type": "string",
+    "required": true,
+    "description": "Domain name to scan, e.g., example.com"
+   }
+  ]
+ },
+ {
+  "name": "csp_policy_heuristics",
+  "description": "Paid comprehensive audit with advanced heuristic analysis, web crawling, scoring, and detailed recommendations",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": "Target URL to analyze"
+   }
+  ]
+ },
+ {
+  "name": "ssl_tls_risk_analyzer",
+  "description": "Aggregates SSL/TLS configuration details from public scans, DNS records, and certificate transparency logs, then performs a risk assessment",
+  "params": [
+   {
+    "name": "host",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "subdomain_vulnerability_ranking",
+  "description": "Paid comprehensive subdomain enumeration and vulnerability ranking",
+  "params": [
+   {
+    "name": "domain",
+    "type": "string",
+    "required": true,
+    "description": "Domain to enumerate e.g. example.com"
+   }
+  ]
+ },
+ {
+  "name": "subdomain_exposure_score",
+  "description": "Paid comprehensive full subdomain exposure scoring and audit report",
+  "params": [
+   {
+    "name": "domain",
+    "type": "string",
+    "required": true,
+    "description": "Domain name to analyze subdomains for"
+   }
+  ]
+ },
+ {
+  "name": "ip_infrastructure_analyst",
+  "description": "Analyze an IP address for ASN, ISP, geolocation, and routing info; returns comprehensive report with scoring and recommendations",
+  "params": [
+   {
+    "name": "ip",
+    "type": "string",
+    "required": true,
+    "description": "IPv4 or IPv6 address to analyze"
+   }
+  ]
+ },
+ {
+  "name": "subdomain_exposure_scorer",
+  "description": "Comprehensive enumeration and exposure scoring of all detected subdomains for a domain",
+  "params": [
+   {
+    "name": "domain",
+    "type": "string",
+    "required": true,
+    "description": "Base domain, e.g. example.com"
+   }
+  ]
+ },
+ {
+  "name": "ssl_tls_threat_assessment",
+  "description": "Comprehensive TLS security threat assessment for a domain",
+  "params": [
+   {
+    "name": "domain",
+    "type": "string",
+    "required": true,
+    "description": "The domain or hostname to assess SSL/TLS configurations for"
+   }
+  ]
+ },
+ {
+  "name": "privacy_policy_qualify",
+  "description": "Fetch and analyze privacy policies across domains for GDPR/CCPA compliance and data sharing signals",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "dns_propagation_mapper",
+  "description": "Comprehensive DNS propagation audit across multiple global DNS resolvers with delay correlation, misconfiguration detection, scoring, grading, and recommendations",
+  "params": [
+   {
+    "name": "domain",
+    "type": "string",
+    "required": true,
+    "description": "Domain name to check propagation status for"
+   },
+   {
+    "name": "recordType",
+    "type": "string",
+    "required": false,
+    "description": "DNS record type to evaluate, e.g. A, AAAA, CNAME, TXT"
+   }
+  ]
+ },
+ {
+  "name": "ip_infrastructure_analyzer",
+  "description": "Comprehensive IP infrastructure analysis: ASN, ISP, geolocation, routing checks, scoring, recommendations",
+  "params": [
+   {
+    "name": "ip",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "ip_geolocation_enrichment",
+  "description": "Enrich an IP address with detailed ASN, ISP, geolocation, and routing data",
+  "params": [
+   {
+    "name": "ip",
+    "type": "string",
+    "required": true,
+    "description": "IPv4 or IPv6 address to analyze"
+   }
+  ]
+ },
+ {
+  "name": "website_authenticity_assessment",
+  "description": "Comprehensive website authenticity assessment combining SSL cert validation, DNS records, redirect chain analysis, and server headers",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "ssl_and_tls_hardening_score",
+  "description": "Run full SSL, TLS, and HTTP security header comprehensive hardening score with actionable recommendations",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "security_headers_checker",
+  "description": "Perform a comprehensive security headers audit with detailed scoring and remediation",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "subdomain_exposure_ranking",
+  "description": "Comprehensive paid scan: exhaustive subdomain enumeration from DNS, CT logs, plus HTTP endpoint probing, header analysis, TLS version checks, outdated service detection, with full scoring and rich recommendations",
+  "params": [
+   {
+    "name": "domain",
+    "type": "string",
+    "required": true,
+    "description": "Root domain to enumerate and analyze"
+   }
+  ]
+ },
+ {
+  "name": "ssl_tls_hardening_forecast",
+  "description": "Analyze SSL/TLS info and forecast renewal and security outlook with detailed alerts and recommendations",
+  "params": [
+   {
+    "name": "host",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "subdomain_exposure_rankings",
+  "description": "Paid, comprehensive analysis of subdomain exposure and security ranking",
+  "params": [
+   {
+    "name": "domain",
+    "type": "string",
+    "required": true,
+    "description": "Root domain to enumerate and analyze"
+   }
+  ]
+ },
+ {
+  "name": "ssl_tls_expiry_forecast",
+  "description": "Comprehensive SSL/TLS certificate and protocol expiry forecast for multiple domains",
+  "params": [
+   {
+    "name": "domains",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "network_route_mapper",
+  "description": "Paid comprehensive analysis of network routing paths including ASN hops, geolocation, latency, suspicion scoring, and remediation",
+  "params": [
+   {
+    "name": "target",
+    "type": "string",
+    "required": true,
+    "description": "Target IP address or domain name to analyze"
+   }
+  ]
+ },
+ {
+  "name": "subdomain_exposure_heatmap",
+  "description": "Exhaustive subdomain enumeration from multiple sources, risk analysis, exposure scoring, recommendations and heatmap report",
+  "params": [
+   {
+    "name": "domain",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "dns_propagation_simulator",
+  "description": "Simulate DNS record propagation across multiple DNS resolvers with delay estimation and misconfiguration detection",
+  "params": [
+   {
+    "name": "domain",
+    "type": "string",
+    "required": true,
+    "description": null
+   },
+   {
+    "name": "recordType",
+    "type": "string",
+    "required": false,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "ssl_tls_configuration_ranker",
+  "description": "Perform a deep, comprehensive SSL/TLS configuration audit of a target site",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "privacy_policy_enricher",
+  "description": "Fetch and analyze a privacy policy URL, combining multiple signals for GDPR and CCPA compliance, data sharing practices, and privacy features",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "privacy_risk_score",
+  "description": "Comprehensive privacy risk analysis of a domain's publicly available privacy policies and disclosures",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": "Public URL of the domain's homepage or privacy policy"
+   }
+  ]
+ },
+ {
+  "name": "http_method_enumeration",
+  "description": "Full enumeration of HTTP methods supported by a target URL with scoring and analysis",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "web_misconfiguration_scan",
+  "description": "Run a comprehensive security misconfiguration scan against the specified URL",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "dependency_license_audit",
+  "description": "Comprehensive license audit across multiple project manifests and license databases with risk scoring",
+  "params": [
+   {
+    "name": "manifest_urls",
+    "type": "string",
+    "required": true,
+    "description": null
+   },
+   {
+    "name": "includeDev",
+    "type": "boolean",
+    "required": false,
+    "description": "Optional flag to include devDependencies or test dependencies"
+   }
+  ]
+ },
+ {
+  "name": "ssl_tls_configuration_forecast",
+  "description": "Comprehensive paid SSL/TLS configuration forecast and security score for a domain",
+  "params": [
+   {
+    "name": "domain",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "subdomain_risk_ranking",
+  "description": "Perform a deep, comprehensive subdomain enumeration and risk ranking audit",
+  "params": [
+   {
+    "name": "domain",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "content_shuffle_detector",
+  "description": "Paid comprehensive audit with multiple fetches, deep NLP content variation analysis, content diffing, and scoring to detect content shuffling and obfuscation",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "api_schema_diff",
+  "description": "Compare multiple API schema versions (REST or GraphQL) to highlight differences and score compatibility",
+  "params": [
+   {
+    "name": "schemas",
+    "type": "string",
+    "required": true,
+    "description": "List of schema URLs and version labels to compare"
+   }
+  ]
+ },
+ {
+  "name": "api_linting",
+  "description": "Run a comprehensive linting and validation on provided OpenAPI spec and implementation URLs",
+  "params": [
+   {
+    "name": "spec_url",
+    "type": "string",
+    "required": true,
+    "description": null
+   },
+   {
+    "name": "impl_url",
+    "type": "string",
+    "required": true,
+    "description": "URL to the live API endpoint to test actual implementation."
+   }
+  ]
+ },
+ {
+  "name": "port_scanner_aggregate",
+  "description": "Deep scan of a list of IP addresses or CIDR ranges with multi-source aggregation and vulnerability scoring",
+  "params": [
+   {
+    "name": "targets",
+    "type": "string",
+    "required": true,
+    "description": null
+   },
+   {
+    "name": "maxPorts",
+    "type": "number",
+    "required": false,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "cdn_infrastructure_enricher",
+  "description": "Comprehensive paid audit integrating DNS, HTTP headers, IP and regional info with detailed scoring and recommendations",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "web_configuration_audit",
+  "description": "Comprehensive paid audit with detailed scoring, grade, meta tags, and .env leak detection",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "subdomain_vulnerability_ranker",
+  "description": "Exhaustive subdomain enumeration, vulnerability inference, scoring, and recommendations",
+  "params": [
+   {
+    "name": "domain",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "ssl_tls_inception_score",
+  "description": "Comprehensive SSL/TLS certificate and protocol audit for the specified hostname or URL",
+  "params": [
+   {
+    "name": "hostname",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "dns_propagation_heatmap",
+  "description": "Paid comprehensive DNS propagation audit across multiple resolver types, including scoring and actionable recommendations",
+  "params": [
+   {
+    "name": "record",
+    "type": "string",
+    "required": true,
+    "description": "DNS record full domain name"
+   },
+   {
+    "name": "type",
+    "type": "string",
+    "required": true,
+    "description": "DNS record type to query"
+   }
+  ]
+ },
+ {
+  "name": "api_schema_delta",
+  "description": "Compare multiple API schemas from given URLs and return detailed diff and evolution analysis",
+  "params": [
+   {
+    "name": "urls",
+    "type": "string",
+    "required": true,
+    "description": "Array of schema URLs to fetch and compare"
+   },
+   {
+    "name": "type",
+    "type": "string",
+    "required": true,
+    "description": "Type of schema, either REST JSON Schema or GraphQL SDL"
+   }
+  ]
+ },
+ {
+  "name": "port_scanner",
+  "description": "Perform a deep port scan on a target IP or hostname",
+  "params": [
+   {
+    "name": "target",
+    "type": "string",
+    "required": true,
+    "description": "Target IP or hostname to scan"
+   }
+  ]
+ },
+ {
+  "name": "ssl_tls_hardening_assessor",
+  "description": "Get a comprehensive SSL/TLS and DNS record security assessment for a hostname",
+  "params": [
+   {
+    "name": "host",
+    "type": "string",
+    "required": true,
+    "description": "Hostname to analyze, e.g. example.com"
+   }
+  ]
+ },
+ {
+  "name": "api_endpoint_discovery",
+  "description": "Comprehensively crawl and analyze API endpoints on the specified domain",
+  "params": [
+   {
+    "name": "domain",
+    "type": "string",
+    "required": true,
+    "description": "Target domain to scan, e.g., example.com"
+   }
+  ]
+ },
+ {
+  "name": "api_response_heuristics",
+  "description": "Comprehensive API response heuristic analysis with scoring and recommendations",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": "URL of the API endpoint to analyze"
+   }
+  ]
+ },
+ {
+  "name": "api_standard_compliance",
+  "description": "Perform a comprehensive API standard compliance analysis on the target API response URL",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": "HTTP or HTTPS URL of the API endpoint to analyze"
+   }
+  ]
+ },
+ {
+  "name": "content_security_policy_check",
+  "description": "Perform a comprehensive security header and content security policy audit",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": "The full HTTPS or HTTP URL of the site to analyze"
+   }
+  ]
+ },
+ {
+  "name": "cross_origin_resource_policymapper",
+  "description": "Perform comprehensive CORS headers audit across multiple endpoints",
+  "params": [
+   {
+    "name": "baseUrl",
+    "type": "string",
+    "required": true,
+    "description": null
+   },
+   {
+    "name": "endpoints",
+    "type": "string",
+    "required": false,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "dns_propagation_inspector",
+  "description": "Comprehensive DNS propagation audit across global resolvers with detailed result analysis",
+  "params": [
+   {
+    "name": "domain",
+    "type": "string",
+    "required": true,
+    "description": "Domain name to check DNS propagation for"
+   },
+   {
+    "name": "recordType",
+    "type": "string",
+    "required": true,
+    "description": "DNS record type to query, e.g., A, AAAA, CNAME, TXT"
+   }
+  ]
+ },
+ {
+  "name": "performance_security_compliance_report",
+  "description": "Comprehensive payable audit combining performance metrics, security headers, SSL cert and DNS analysis with scoring and prioritized fix suggestions",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ },
+ {
+  "name": "site_security_baseline",
+  "description": "Comprehensive baseline audit with combined security headers, SSL, and configuration checks",
+  "params": [
+   {
+    "name": "url",
+    "type": "string",
+    "required": true,
+    "description": "Target website URL to analyze"
+   }
+  ]
+ },
+ {
+  "name": "ssl_expiry_forecast",
+  "description": "Paid endpoint combining certificate transparency logs, DNS, SSL cert data to forecast expiry across multiple domains",
+  "params": [
+   {
+    "name": "domains",
+    "type": "string",
+    "required": true,
+    "description": null
+   }
+  ]
+ }
+]

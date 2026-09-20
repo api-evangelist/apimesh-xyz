@@ -1,0 +1,105 @@
+generated: '2026-09-19'
+method: searched
+source: https://github.com/mbeato/APIMesh#readme
+derived_from: openapi/_original/apimesh-xyz-openapi.json
+docs:
+- https://github.com/mbeato/APIMesh#readme
+- https://apimesh.xyz/llms-full.txt
+- https://github.com/mbeato/agentcontext#hosted-endpoint
+- https://apimesh.xyz/legal/terms
+- https://apimesh.xyz/legal/acceptable-use
+probed: '2026-09-19 — POST agentsmd.apimesh.xyz/normalize, POST stripesig.apimesh.xyz/check, GET apimesh.xyz/wallet/{address}[/history]'
+base_urls:
+  pattern: 'https://{api-name}.apimesh.xyz — one subdomain per API behind a wildcard router'
+  live: [https://agentsmd.apimesh.xyz, https://stripesig.apimesh.xyz, https://apimesh.xyz (wallet endpoints)]
+media_type: application/json
+auth:
+  style: >-
+    Three access modes documented for the marketplace: (1) Bearer API key in the Authorization
+    header, prefixed sk_live_, bought as prepaid credits at /signup via Stripe; (2) x402 — call,
+    receive 402 with WWW-Authenticate: Payment, sign a USDC payment on Base, retry with the payment
+    header; (3) MPP (Stripe Machine Payments Protocol) over the same 402 challenge. The two live
+    wedge endpoints require no authentication at all. The wallet-cap write (PUT /wallet/{address}/cap)
+    returned 401 anonymously; how it is authenticated is undocumented.
+  detail: authentication/apimesh-xyz-authentication.yml
+idempotency:
+  supported: false
+  coverage: none
+  mechanism: null
+  header: null
+  scope: []
+  retention: null
+  description: >-
+    No Idempotency-Key header or equivalent is documented or declared anywhere. The live write
+    surface is pure computation — POST /normalize and POST /check derive a response from the
+    request body and store nothing — so a replay is naturally harmless; the documented paid model
+    (credit deducted per call, x402 payment per call) has NO replay protection: a retried paid
+    call is charged again. PUT /wallet/{address}/cap is a last-write-wins setter.
+reversibility:
+  status: documented
+  grade_basis: >-
+    One reversal path exists with no stated window. Payments: per-call credits and x402/MPP
+    micropayments are final — the Refund and Credit Policy states "Prepaid API credits are
+    non-refundable once purchased" and "Once credits are added to your account, the transaction
+    is final", with corrections only for billing errors or duplicate charges. Spend caps: a
+    wallet cap set with PUT /wallet/{address}/cap can be replaced by setting it again (the MCP
+    tool wallet_set_cap describes it as replaceable), which is a reversal path for the one
+    persistent write, but no window or removal semantics are published. Account: deletion on
+    request to support, data erased within 30 days (Privacy §4). The analysis endpoints
+    themselves are read-only computations with nothing to undo.
+  write_surfaces:
+  - operation: 'PUT /wallet/{address}/cap'
+    reversal: 'PUT /wallet/{address}/cap again with new limits (last-write-wins)'
+    window: not stated
+    docs: https://github.com/mbeato/APIMesh#wallet--spend-tracking-free-no-auth
+  - operation: 'paid API call (credit deduction / x402 / MPP payment)'
+    reversal: none — non-refundable by policy; billing errors and duplicate charges corrected on request
+    window: not stated
+    docs: https://apimesh.xyz/legal/refund
+  - operation: 'POST /normalize, POST /check'
+    reversal: na — stateless computation
+  read_only_surface: all analysis endpoints (GET /check, /preview, /analyze, /scan; POST /build, /generate, /validate)
+dry_run:
+  status: documented
+  mechanism: 'Free GET /preview on most marketplace APIs returned "limited results, no payment required" before the paid /check call'
+  live: false
+  note: Every /preview host is retired (404) as of 2026-09-19; the wedges are free end-to-end so there is nothing to rehearse.
+pagination:
+  style: offset
+  applies_to: 'GET /wallet/{address}/history'
+  request: {params: [limit, offset], note: 'defaults observed limit=50 offset=0; filterable by API per README'}
+  response: {fields: [rows, total, limit, offset, has_more]}
+  observed: '{"wallet":"0x…","rows":[],"total":0,"limit":50,"offset":0,"has_more":false}'
+request_contracts:
+  agentsmd_normalize:
+    method: POST
+    url: https://agentsmd.apimesh.xyz/normalize
+    body: {source_format: 'string, required — agents-md | claude-md | gemini-md | cursor-mdc | cursorrules | windsurf-rules | windsurfrules | clinerules | clinerules-dir | conventions-md', content: 'string, required, size-capped (413 above MAX_INPUT_CHARS)', targets: 'string[], optional'}
+    response: {files: 'map of output path -> content', warnings: 'W001-W099 strings', detected_formats: 'string[]'}
+    observed: 'POST {"source_format":"agents-md","content":"# Rules\n- be terse","targets":["claude-md"]} -> 200 {"files":{"CLAUDE.md":"# Rules\n- be terse\n"},"warnings":[],"detected_formats":[]}'
+    auth: none
+    cors: 'access-control-allow-origin: *'
+  stripesig_check:
+    method: POST
+    url: https://stripesig.apimesh.xyz/check
+    body: {provider: 'stripe | github | slack | shopify, required', secret: 'string, required (webhook signing secret)', raw_body: 'string, required — exact bytes received', headers: 'object of string, required', tolerance_seconds: 'number >= 0, optional'}
+    response: 'plain-English diagnosis of why the HMAC-SHA256 signature did not verify (recomputed server-side)'
+    auth: none
+    cors: 'access-control-allow-origin: *'
+    caution: the request carries a live webhook signing secret to a third party; the landing page says nothing about retention beyond the privacy policy's 90-day request-log statement
+field_expansion: none
+metadata: none
+request_id:
+  header: none
+  note: no request/trace id header observed on any response
+versioning:
+  style: none on the wire
+  detail: lifecycle/apimesh-xyz-lifecycle.yml
+errors:
+  envelope: '{"error": "<message>"}'
+  detail: errors/apimesh-xyz-problem-types.yml
+rate_limiting:
+  headers_observed: [x-ratelimit-limit, x-ratelimit-remaining]
+  exhaustion_status: 429
+  detail: rate-limits/apimesh-xyz-rate-limits.yml
+security_headers_observed: 'strict-transport-security max-age=31536000; includeSubDomains; preload, x-content-type-options nosniff, x-frame-options DENY, content-security-policy default-src ''none'', referrer-policy strict-origin-when-cross-origin, permissions-policy; Server header stripped (via: 1.1 Caddy)'

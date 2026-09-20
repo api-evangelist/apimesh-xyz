@@ -64,5 +64,5 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-APIMesh is a company surfaced via the API Evangelist harvest backlog (source: a2a-registry) and added to the network as a stub for full-pipeline profiling.
+APIMesh (apimesh.xyz) is a solo, MIT-licensed developer-tools project that launched in early 2026 as a pay-per-call web-analysis API marketplace (x402, Stripe MPP and API-key payments, a 76-tool MCP server on npm), retired that marketplace on 2026-05-11, and now hosts two free wedge tools: agentsmd (agent rules-file normalizer, POST /normalize) and stripesig (webhook signature debugger, POST /check). Its A2A agent card, ai-plugin manifest, OpenAPI, llms.txt and x402/MPP discovery documents are still served and describe the retired surface.
 - https://apimesh.xyz/

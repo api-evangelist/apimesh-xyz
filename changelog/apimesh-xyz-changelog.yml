@@ -1,0 +1,63 @@
+generated: '2026-09-19'
+method: searched
+source: https://registry.npmjs.org/@mbeato%2Fapimesh-mcp-server
+docs: https://github.com/mbeato/APIMesh/commits/main
+title: APIMesh change history
+scheme: 'no published changelog page; npm semver releases of the MCP server plus repository commits'
+current_version: '@mbeato/apimesh-mcp-server 1.8.2; OpenAPI info.version 2.0.0'
+updated: '2026-05-11'
+entry_count: 8
+note: >-
+  The repository contains an HTML changelog (apis/landing/changelog.html, "23 APIs built and
+  counting", entries dated 2026-03-02 and 2026-03-30) that the live site no longer routes
+  (/changelog 401). GitHub has no releases; tags are v1.0, mcp-server-v1.8.0 and
+  mcp-server-v1.8.1. The dated record that exists is the npm release timeline (10 versions,
+  2026-03-01 to 2026-04-26) and the commit log, which is what is structured below. Nothing has
+  changed since 2026-05-11.
+entries:
+- date: '2026-05-11'
+  version: null
+  category: removed
+  breaking: true
+  summary: Marketplace retired; apimesh.xyz becomes a hub for two wedge tools.
+  changes:
+  - 'commit "retire marketplace APIs, focus on wedges (agentsmd + stripesig)" — every apis/* sub-app removed, apis/RETIRED.md added'
+  - 'commit "add wedge index at apimesh.xyz" — apex serves public/hub.html'
+  - 'agent card and llms-full.txt regenerated for the 4 wedge names (generated_at 2026-05-11T21:42Z)'
+  - 'discovery documents for the 23-API marketplace left in place'
+- date: '2026-05-01'
+  version: null
+  category: added
+  breaking: false
+  summary: Last brain-generated APIs shipped (API count badge 100 -> 102).
+  changes: ['feat(brain): ship privacy-policy-drift, ssl-tls-vulnerabilty-scorer, subdomain-risk-assessment, subdomain-security-audit, domain-security-report']
+- date: '2026-04-29'
+  version: '@mbeato/agentcontext 0.1.2, @mbeato/agentcontext-mcp 0.1.2'
+  category: added
+  breaking: false
+  summary: agentsmd wedge CLI, library and MCP server released on npm.
+- date: '2026-04-26'
+  version: '@mbeato/apimesh-mcp-server 1.8.2'
+  category: added
+  breaking: false
+  summary: MCP server grows to 76 tools (74 APIs + wallet_usage + wallet_set_cap).
+- date: '2026-04-23'
+  version: '@mbeato/apimesh-mcp-server 1.8.0 / 1.8.1'
+  category: added
+  breaking: false
+  summary: 67 tools (65 APIs + wallet usage + spend caps); wallet spend-cap tools introduced.
+- date: '2026-03-30'
+  version: '@mbeato/apimesh-mcp-server 1.7.0'
+  category: added
+  breaking: false
+  summary: 25 tools; 21 new APIs listed in the in-repo changelog page; MCP registry entry updated with WALLET_PRIVATE_KEY.
+- date: '2026-03-02'
+  version: '@mbeato/apimesh-mcp-server 1.2.x'
+  category: added
+  breaking: false
+  summary: email-verify and tech-stack APIs launched; MCP server 1.2.1/1.2.2 (12 curated tools).
+- date: '2026-03-01'
+  version: '@mbeato/apimesh-mcp-server 1.0.0'
+  category: added
+  breaking: false
+  summary: First npm release and first MCP registry listing (io.github.mbeato/apimesh, 12 tools).

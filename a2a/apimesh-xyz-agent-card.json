@@ -1,0 +1,143 @@
+{
+  "name": "APIMesh",
+  "description": "Pay-per-call API marketplace. 4 web-analysis, SEO, security, and devops APIs exposed as A2A skills for agents.",
+  "version": "1.0.0",
+  "protocolVersion": "1.0",
+  "provider": {
+    "organization": "APIMesh",
+    "url": "https://apimesh.xyz"
+  },
+  "iconUrl": "https://apimesh.xyz/favicon.ico",
+  "documentationUrl": "https://apimesh.xyz/openapi.json",
+  "supportedInterfaces": [
+    {
+      "url": "https://apimesh.xyz",
+      "protocolBinding": "HTTP+JSON",
+      "protocolVersion": "1.1"
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false,
+    "extendedAgentCard": false
+  },
+  "skills": [
+    {
+      "id": "agentcontext",
+      "name": "agentcontext",
+      "description": "Agentcontext — pay-per-call API on apimesh.xyz (price: $0.01 per call)",
+      "tags": [
+        "web-analysis",
+        "agentcontext"
+      ],
+      "examples": [
+        "GET https://agentcontext.apimesh.xyz/check"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "agentsmd",
+      "name": "agentsmd",
+      "description": "Agentsmd — pay-per-call API on apimesh.xyz (price: $0.01 per call)",
+      "tags": [
+        "web-analysis",
+        "agentsmd"
+      ],
+      "examples": [
+        "GET https://agentsmd.apimesh.xyz/check"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "sigdebug",
+      "name": "sigdebug",
+      "description": "Sigdebug — pay-per-call API on apimesh.xyz (price: $0.01 per call)",
+      "tags": [
+        "web-analysis",
+        "sigdebug"
+      ],
+      "examples": [
+        "GET https://sigdebug.apimesh.xyz/check"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "stripesig",
+      "name": "stripesig",
+      "description": "Stripesig — pay-per-call API on apimesh.xyz (price: $0.01 per call)",
+      "tags": [
+        "devops",
+        "stripesig"
+      ],
+      "examples": [
+        "GET https://stripesig.apimesh.xyz/check"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    }
+  ],
+  "securitySchemes": {
+    "x402": {
+      "type": "Payment",
+      "protocol": "x402",
+      "version": "1",
+      "networks": [
+        "base-mainnet"
+      ],
+      "asset": "USDC",
+      "description": "Pay per request via x402 (HTTP 402 + WWW-Authenticate: Payment)."
+    },
+    "mpp": {
+      "type": "Payment",
+      "protocol": "mpp",
+      "version": "draft-ryan-httpauth-payment",
+      "description": "Pay per request via MPP (HTTP 402 + WWW-Authenticate: Payment)."
+    },
+    "apiKey": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization",
+      "description": "Bearer sk_live_… key purchased at /signup (Stripe).",
+      "x-purchase-url": "https://apimesh.xyz/signup"
+    }
+  },
+  "security": [
+    {
+      "x402": []
+    },
+    {
+      "mpp": []
+    },
+    {
+      "apiKey": []
+    }
+  ],
+  "defaultInputModes": [
+    "application/json",
+    "text/plain"
+  ],
+  "defaultOutputModes": [
+    "application/json"
+  ],
+  "generated_at": "2026-05-11T21:42:25.881Z"
+}

@@ -1,0 +1,157 @@
+generated: '2026-09-19'
+method: probed
+source: https://apimesh.xyz/.well-known/
+hit_count: 8
+path_echo_control: passed
+note: >-
+  apimesh.xyz serves /.well-known/* as static files from the provider's public/ directory (per
+  caddy/Caddyfile in github.com/mbeato/APIMesh), so hits are real files and misses are real 404s;
+  the negative-control path returned 404. Unknown non-well-known paths on the apex return 401
+  "Unauthorized" from the reverse-proxied app (recorded where probed). The subdomains share one
+  wildcard: api./mcp./www. answer a JSON 404 {"error":"Unknown API: <name>"}; the two live wedge
+  hosts (agentsmd, stripesig) answer text 404 for every well-known path except /.well-known/mpp,
+  which each serves per-API. The provider ships no stdio-less remote MCP host (mcp.apimesh.xyz is
+  named in RETIRED.md as a former self-hosted HTTP MCP server and now returns {"error":"Not found"}),
+  so the MCP host row records an absent surface rather than a missed probe. No OAuth/OIDC discovery,
+  no security.txt, no RFC 9727 api-catalog (even though the provider's own x-discovery block names
+  one), no apis.json, no UCP/ACP/AAuth.
+hosts:
+- host: https://apimesh.xyz
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 200
+    file: apimesh-xyz-agent-card.json
+    content_type: application/json
+  - path: /.well-known/agent.json
+    status: 200
+    file: apimesh-xyz-agent-card.json
+    content_type: application/json
+    note: byte-identical to agent-card.json
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    file: apimesh-xyz-ai-plugin.json
+    content_type: application/json
+  - path: /.well-known/openapi.json
+    status: 200
+    file: apimesh-xyz-openapi.json
+    content_type: application/json
+    note: OpenAPI 3.1.0, info.version 2.0.0, 23 servers, 3 paths — also saved as openapi/_original/apimesh-xyz-openapi.json
+  - path: /.well-known/x402.json
+    status: 200
+    file: apimesh-xyz-x402.json
+    content_type: application/json
+    note: x402 discovery document, 23 APIs, updated_at 2026-03-31
+  - path: /.well-known/x402
+    status: 200
+    file: apimesh-xyz-x402-resources.json
+    note: x402 resources list (21 paid endpoints); served with no content-type
+  - path: /.well-known/mpp
+    status: 200
+    file: apimesh-xyz-mpp.json
+    note: Machine Payments Protocol platform manifest; served with no content-type
+  - path: /.well-known/llms.txt
+    status: 200
+    file: ../llms/apimesh-xyz-llms.txt
+    content_type: text/plain
+    note: identical to /llms.txt
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+    note: named as api_catalog in the provider's own x-discovery block but never published
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/mcp.json
+    status: 404
+  - path: /apis.json
+    status: 401
+    note: app catch-all, not a document
+  - path: /apis.yml
+    status: 401
+    note: app catch-all, not a document
+  - path: /.well-known/apimesh-xyz-negative-control-9c1f4a2e.json
+    status: 404
+    note: negative control
+- host: https://www.apimesh.xyz
+  documents:
+  - path: /
+    status: 404
+    note: '{"error":"Unknown API: www"} — no www host'
+- host: https://api.apimesh.xyz
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+- host: https://mcp.apimesh.xyz
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+- host: https://agentsmd.apimesh.xyz
+  documents:
+  - path: /.well-known/mpp
+    status: 200
+    file: apimesh-xyz-agentsmd-mpp.json
+    content_type: application/json
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+- host: https://stripesig.apimesh.xyz
+  documents:
+  - path: /.well-known/mpp
+    status: 200
+    file: apimesh-xyz-stripesig-mpp.json
+    content_type: application/json
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+- host: https://agentcontext.apimesh.xyz
+  documents:
+  - path: /
+    status: 301
+    note: permanent redirect to agentsmd.apimesh.xyz (the wedge was renamed)
+- host: https://sigdebug.apimesh.xyz
+  documents:
+  - path: /
+    status: 301
+    note: permanent redirect to stripesig.apimesh.xyz (the wedge was renamed)

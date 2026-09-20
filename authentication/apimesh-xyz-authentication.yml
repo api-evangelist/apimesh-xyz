@@ -1,0 +1,66 @@
+generated: '2026-09-19'
+method: searched
+source: https://apimesh.xyz/.well-known/agent-card.json
+docs:
+- https://github.com/mbeato/APIMesh#payment-methods
+- https://apimesh.xyz/llms-full.txt
+- https://apimesh.xyz/.well-known/mpp
+- https://apimesh.xyz/legal/terms
+derived_from: openapi/_original/apimesh-xyz-openapi.json
+note: >-
+  Neither served OpenAPI declares a securityScheme (derive-authentication.py found none), so this
+  profile is read from the documents that do describe access: the agent card's securitySchemes
+  block, the MPP manifest's payment_methods, the README and llms-full.txt. The marketplace model
+  was "pay, don't authenticate": an anonymous request to a paid endpoint received HTTP 402 with a
+  WWW-Authenticate: Payment challenge and the client either paid per request (x402 USDC on Base,
+  or Stripe MPP) or presented a prepaid-credit Bearer key. The two endpoints that are live today
+  (agentsmd POST /normalize, stripesig POST /check) require no credential at all — confirmed
+  2026-09-19 with anonymous 200/400 responses. The one authenticated write observed, PUT
+  /wallet/{address}/cap, returned 401 anonymously and its credential type is undocumented.
+summary:
+  types: [apiKey, x402, mpp, none]
+  api_key_in: [header]
+  oauth2_flows: []
+  live_surface_auth: none
+schemes:
+- name: apiKey
+  type: http
+  scheme: bearer
+  header: Authorization
+  key_prefix: sk_live_
+  description: 'Prepaid-credit API key bought at https://apimesh.xyz/signup (Stripe Checkout); sent as Authorization: Bearer <key>. Each paid call deducts credits atomically before execution (RETIRED.md); credits never expire and are non-refundable (Terms §4).'
+  purchase_url: https://apimesh.xyz/signup
+  sources: [agent card securitySchemes.apiKey, https://apimesh.xyz/llms-full.txt]
+  status: 'purchasable at /signup (200) but no priced endpoint answers since 2026-05-11'
+- name: x402
+  type: payment
+  protocol: x402
+  version: '1'
+  network: base-mainnet (eip155:8453)
+  asset: USDC
+  facilitator: Coinbase CDP
+  challenge: 'HTTP 402 with WWW-Authenticate: Payment carrying price, wallet and network; client signs a USDC transfer and retries with the X-PAYMENT header'
+  discovery: [https://apimesh.xyz/.well-known/x402.json, https://apimesh.xyz/.well-known/x402]
+  sources: [agent card securitySchemes.x402, https://github.com/mbeato/APIMesh#1-x402----crypto-micropayments-default]
+- name: mpp
+  type: payment
+  protocol: mpp
+  version: draft-ryan-httpauth-payment
+  challenge: 'same HTTP 402 / WWW-Authenticate: Payment flow; cards and stablecoins via Stripe Machine Payments Protocol; discovery via OpenAPI x-mpp annotations (none present in the served specs) and per-API /.well-known/mpp'
+  discovery: [https://apimesh.xyz/.well-known/mpp, https://agentsmd.apimesh.xyz/.well-known/mpp, https://stripesig.apimesh.xyz/.well-known/mpp]
+  sources: [agent card securitySchemes.mpp, MPP manifest payment_methods]
+- name: none
+  type: none
+  applies_to: ['POST https://agentsmd.apimesh.xyz/normalize', 'POST https://stripesig.apimesh.xyz/check', 'GET https://apimesh.xyz/wallet/{address}', 'GET https://apimesh.xyz/wallet/{address}/history', 'GET /health on every host']
+  description: Anonymous; per-IP rate limits are the only gate.
+  sources: [live probes 2026-09-19, https://github.com/mbeato/APIMesh#wallet--spend-tracking-free-no-auth]
+mcp:
+  handshake_auth: none
+  environment: 'WALLET_PRIVATE_KEY (optional, secret) — funds x402 payments made by the tools; free /preview tools ran without it'
+  source: mcp/apimesh-xyz-mcp.yml
+oauth: false
+openid_connect: false
+discovery_probes:
+- {url: https://apimesh.xyz/.well-known/oauth-authorization-server, status: 404}
+- {url: https://apimesh.xyz/.well-known/oauth-protected-resource, status: 404}
+- {url: https://apimesh.xyz/.well-known/openid-configuration, status: 404}

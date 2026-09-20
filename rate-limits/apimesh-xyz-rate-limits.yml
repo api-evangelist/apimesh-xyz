@@ -1,0 +1,57 @@
+generated: '2026-09-19'
+method: probed
+source: 'live response headers from POST https://agentsmd.apimesh.xyz/normalize, POST https://stripesig.apimesh.xyz/check and GET https://apimesh.xyz/wallet/{address}/history on 2026-09-19'
+docs:
+- https://apimesh.xyz/legal/acceptable-use
+- https://github.com/mbeato/APIMesh/blob/main/apis/agentcontext/index.ts
+- https://github.com/mbeato/APIMesh/blob/main/apis/sigdebug/index.ts
+limit_count: 4
+summary: >-
+  Per-IP fixed windows of 60 seconds. The numbers were observed in X-RateLimit-Limit headers and
+  the windows read from the wedge source (rateLimit(zone, max, 60_000)); the Terms of Service say
+  "rate limits apply per API key and are published in the documentation" but no such page exists,
+  and the Acceptable Use Policy tells clients to back off exponentially on 429. No reset header,
+  no Retry-After observed, and the per-API-key limits of the retired paid tier were never
+  documented.
+headers:
+  limit: X-RateLimit-Limit
+  remaining: X-RateLimit-Remaining
+  reset: null
+  retry_after: not observed
+exhaustion_status: 429
+rate_limits:
+- name: agentsmd /normalize
+  scope: per-ip
+  applies_to: ['POST https://agentsmd.apimesh.xyz/normalize']
+  limit: 30
+  window: 60s
+  metric: request
+  burst: null
+  evidence: 'source: rateLimit("agentcontext-normalize", 30, 60_000); response header on a 200 showed x-ratelimit-limit: 60 / x-ratelimit-remaining: 59 (the wildcard zone header is emitted; the tighter path zone is the binding constraint)'
+- name: agentsmd host-wide
+  scope: per-ip
+  applies_to: ['https://agentsmd.apimesh.xyz/*']
+  limit: 60
+  window: 60s
+  metric: request
+  burst: null
+  evidence: 'x-ratelimit-limit: 60, x-ratelimit-remaining: 59 observed; source rateLimit("agentcontext", 60, 60_000)'
+- name: stripesig host-wide
+  scope: per-ip
+  applies_to: ['https://stripesig.apimesh.xyz/*', 'POST /check']
+  limit: 60
+  window: 60s
+  metric: request
+  burst: null
+  evidence: 'x-ratelimit-limit: 60, x-ratelimit-remaining: 59 observed on POST /check; source rateLimit("sigdebug", 60, 60_000) (signup-notify 5/min, event 30/min)'
+- name: wallet endpoints
+  scope: per-ip
+  applies_to: ['GET https://apimesh.xyz/wallet/{address}', 'GET https://apimesh.xyz/wallet/{address}/history']
+  limit: 30
+  window: 60s
+  metric: request
+  burst: null
+  evidence: 'x-ratelimit-limit: 30, x-ratelimit-remaining: 29 observed on /history; window assumed to match the shared 60 s rate-limit helper — not confirmed from source'
+undocumented:
+- 'per-API-key limits for paid calls (Terms §6 says they are documented; they are not)'
+- 'whether the wedge limits are enforced per IP or per IP+path (source keys zones by name)'

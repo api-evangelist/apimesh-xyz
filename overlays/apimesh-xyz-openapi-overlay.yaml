@@ -1,0 +1,49 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for APIMesh
+  version: 1.0.0
+  description: >-
+    Overlay of API Evangelist annotations on the OpenAPI APIMesh serves at
+    https://apimesh.xyz/.well-known/openapi.json (saved verbatim as openapi/_original/apimesh-xyz-openapi.json).
+    It records what the pipeline observed on 2026-09-19 without altering the harvested document:
+    provenance, the liveness of each declared server, and the payment/discovery context the spec
+    itself does not carry. Apply with any Overlay 1.0.0 processor; never edit the original.
+  x-generated: '2026-09-19'
+  x-method: generated
+extends: openapi/apimesh-xyz-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provenance:
+      harvested: '2026-09-19'
+      source: https://apimesh.xyz/.well-known/openapi.json
+      http_status: 200
+      owner_check: info.title APIMesh; every servers[] host is *.apimesh.xyz; the same file is committed at public/.well-known/openapi.json in github.com/mbeato/APIMesh
+    x-apievangelist-liveness:
+      checked: '2026-09-19'
+      servers_declared: 23
+      servers_answering: 0
+      finding: every server root and /preview returned 404 {"error":"Unknown API":"<name>"}; the provider retired these APIs on 2026-05-11 (apis/RETIRED.md) and the served spec was not withdrawn
+    x-apievangelist-contract-gaps:
+    - no operationIds on any operation
+    - no components.schemas, no response bodies described, no parameters declared (the /preview query parameters url=, domain=, email=, name= appear only in the README)
+    - the paid endpoints (/check, /analyze, /build, /generate, /validate, /scan) that carry the product are absent; they are listed only at /.well-known/x402
+    - no securitySchemes, although the agent card and MPP manifest describe x402, MPP and Bearer API-key access
+    x-apievangelist-related:
+      agent_card: https://apimesh.xyz/.well-known/agent-card.json
+      llms_txt: https://apimesh.xyz/llms.txt
+      x402_discovery: https://apimesh.xyz/.well-known/x402.json
+      mpp_manifest: https://apimesh.xyz/.well-known/mpp
+      root_spec: https://apimesh.xyz/openapi.json
+      root_spec_note: a second, newer document (info.version 1.0.0, 4 wedge servers, paths {}) saved as openapi/_original/apimesh-xyz-root-openapi.json
+- target: $.servers[*]
+  update:
+    x-apievangelist-status: retired
+    x-apievangelist-observed: '404 {"error":"Unknown API"} on / and /preview, 2026-09-19'
+- target: $.paths['/health'].get
+  update:
+    x-apievangelist-observed: 'still 200 {"status":"ok"} on every *.apimesh.xyz host via the wildcard router'
+- target: $.paths['/preview'].get
+  update:
+    x-apievangelist-observed: '404 on all 23 hosts since 2026-05-11'
+    x-apievangelist-payment-context: 'free tier of a pay-per-call endpoint; the paid sibling paths (see x-apievangelist-contract-gaps) answered 402 with WWW-Authenticate: Payment per the provider docs'

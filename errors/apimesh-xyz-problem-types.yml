@@ -1,0 +1,58 @@
+generated: '2026-09-19'
+method: probed
+source: live responses from apimesh.xyz, agentsmd.apimesh.xyz and stripesig.apimesh.xyz on 2026-09-19, cross-read against apis/sigdebug/index.ts and apis/agentcontext/index.ts in github.com/mbeato/APIMesh
+derived_from: openapi/_original/apimesh-xyz-openapi.json
+format: custom
+envelope:
+  content_type: application/json
+  shape: '{"error": "<human-readable message>"}'
+  note: >-
+    One string field, no code, no type URI, no request id. Unrouted paths on the apex return
+    HTTP 401 with a text/plain-ish (application/octet-stream) body "Unauthorized" and
+    WWW-Authenticate: Bearer realm="" — this is the app's catch-all, not an auth failure on a
+    real resource. The published OpenAPI declares no 4xx/5xx responses at all, so every entry
+    below is observed or read from source, not from the contract.
+problems:
+- status: 400
+  title: Invalid or incomplete request body
+  observed:
+  - 'POST agentsmd.apimesh.xyz/normalize {} -> {"error":"source_format required"}'
+  - 'POST stripesig.apimesh.xyz/check {} -> {"error":"provider must be one of: stripe, github, slack, shopify"}'
+  - 'POST stripesig.apimesh.xyz/check {"provider":"stripe"} -> {"error":"secret (string) required"}'
+  documented_variants:
+    agentsmd_normalize: ['invalid JSON body', 'source_format required', 'content (string) required', 'parse failed: <msg>', 'render(<target>) failed: <msg>']
+    stripesig_check: ['invalid JSON body', 'provider must be one of: stripe, github, slack, shopify', 'secret (string) required', 'raw_body (string) required', 'headers (object) required', 'tolerance_seconds must be a non-negative number', 'header <k> must be a string']
+  remediation: Send application/json with every required field; see the request contracts in conventions/apimesh-xyz-conventions.yml.
+  source: apis/agentcontext/index.ts, apis/sigdebug/index.ts
+- status: 401
+  title: Unauthorized (apex catch-all)
+  observed: 'GET apimesh.xyz/docs, /pricing, /terms, /mcp, /apis.json, PUT /wallet/{address}/cap -> "Unauthorized" with WWW-Authenticate: Bearer realm=""'
+  note: Returned for any apex path the app does not route AND for the authenticated wallet-cap write; the two cases are indistinguishable from the response.
+- status: 402
+  title: Payment Required
+  documented: 'Paid endpoints return 402 with WWW-Authenticate: Payment carrying price, wallet and network; the client signs a USDC payment (x402) or MPP payment and retries with the payment header.'
+  source: https://github.com/mbeato/APIMesh#payment-methods, https://apimesh.xyz/llms-full.txt
+  note: Not observable on 2026-09-19 — every paid host has been retired.
+- status: 404
+  title: Unknown API
+  observed: 'GET <retired-name>.apimesh.xyz/ -> {"error":"Unknown API: <name>"}; GET check.apimesh.xyz/preview -> same'
+  note: The wildcard router's response for any subdomain not in the registry; since 2026-05-11 this covers all 23 servers in the OpenAPI. Wedge hosts return text/plain "404 Not Found" for unknown paths.
+  source: apis/router.ts
+- status: 405
+  title: Method Not Allowed
+  observed: 'POST apimesh.xyz/ -> 405 (the apex root is a static file)'
+- status: 413
+  title: Payload Too Large
+  documented_variants:
+    agentsmd_normalize: ['content exceeds <MAX_INPUT_CHARS> chars']
+    stripesig_check: ['raw_body exceeds <MAX_BODY_CHARS> chars', 'secret exceeds <MAX_SECRET_CHARS> chars', 'header <k> exceeds <MAX_HEADER_CHARS> chars']
+  note: Caddy additionally caps request bodies at 64KB on the apex (caddy/Caddyfile request_body max_size).
+  source: apis/agentcontext/index.ts, apis/sigdebug/index.ts
+- status: 429
+  title: Too Many Requests
+  documented: 'Acceptable Use Policy: "Implement exponential backoff on 429 responses"; wedge zones are 60 requests / 60 s per IP (30 for /normalize, 5 for /signup-notify).'
+  source: https://apimesh.xyz/legal/acceptable-use, shared/rate-limit via apis/*/index.ts
+  note: Not triggered during the probe; see rate-limits/apimesh-xyz-rate-limits.yml for the headers observed below the limit.
+gaps:
+- No machine-readable error codes; a consumer must string-match the message.
+- The OpenAPI declares no error responses, so none of the above is discoverable from the contract.

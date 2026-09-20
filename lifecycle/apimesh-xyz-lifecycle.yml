@@ -1,0 +1,62 @@
+generated: '2026-09-19'
+method: searched
+source: https://github.com/mbeato/APIMesh/blob/main/apis/RETIRED.md
+derived_from: openapi/_original/apimesh-xyz-openapi.json
+docs:
+- https://github.com/mbeato/APIMesh/blob/main/apis/RETIRED.md
+- https://mbeato.dev/work/apimesh
+- https://apimesh.xyz/legal/terms
+versioning:
+  scheme: none on the wire; info.version in the served documents and semver on the npm packages
+  current_version: 'OpenAPI info.version 2.0.0 (/.well-known/openapi.json) and 1.0.0 (/openapi.json); @mbeato/apimesh-mcp-server 1.8.2'
+  spec_url: https://apimesh.xyz/.well-known/openapi.json
+  policy_published: false
+  note: Paths are unversioned (/check, /preview, /normalize). No versioning policy is written anywhere.
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  deprecated_operations: []
+  retired_surface:
+    date: '2026-05-11'
+    announcement: https://github.com/mbeato/APIMesh/blob/main/apis/RETIRED.md
+    archive: https://github.com/mbeato/conway/tree/archive/marketplace-2026-04-pre-prune
+    scope: 'All marketplace-era APIs (RETIRED.md says 100 were built; 23 appear in the served OpenAPI/llms.txt, 21 in the x402 resources list, 58 in the repo copy of the MPP manifest, 74 as MCP tools) plus the self-hosted HTTP MCP server at mcp.apimesh.xyz.'
+    observed: 'Every one of the 23 OpenAPI servers returns 404 {"error":"Unknown API"} on / and /preview; mcp.apimesh.xyz returns {"error":"Not found"} (2026-09-19).'
+    notice_given: none — no Sunset/Deprecation headers, no dated notice on the site; the retirement is documented in the repository and the operator's case study only
+    discovery_documents_not_withdrawn:
+    - https://apimesh.xyz/.well-known/openapi.json
+    - https://apimesh.xyz/llms.txt
+    - https://apimesh.xyz/.well-known/ai-plugin.json
+    - https://apimesh.xyz/.well-known/x402.json
+    - https://apimesh.xyz/.well-known/x402
+    - '@mbeato/apimesh-mcp-server on npm (still installable, tools call the retired hosts)'
+    stated_reason: 'Total paid calls: 0, total revenue: $0.00; "wrong buyer assumption" and "breadth without signal" (RETIRED.md)'
+  renamed_hosts:
+  - {from: agentcontext.apimesh.xyz, to: agentsmd.apimesh.xyz, status: 301}
+  - {from: sigdebug.apimesh.xyz, to: stripesig.apimesh.xyz, status: 301}
+  note: >-
+    The absence of a deprecation policy is not neutral here: the provider retired an entire API
+    surface in one commit and left every machine-discovery document advertising it. An agent
+    reading the served OpenAPI, llms.txt, ai-plugin or MCP tool list today is directed to hosts
+    that have not existed for four months.
+current_surface:
+  live_as_of: '2026-09-19'
+  apis:
+  - {name: agentsmd, host: https://agentsmd.apimesh.xyz, endpoint: 'POST /normalize', status: live, evidence: '200 with converted files on a valid body; 400 validation errors otherwise'}
+  - {name: stripesig, host: https://stripesig.apimesh.xyz, endpoint: 'POST /check', status: live, evidence: '400 validation errors on partial bodies'}
+  - {name: wallet, host: https://apimesh.xyz, endpoint: 'GET /wallet/{address}, GET /wallet/{address}/history, PUT /wallet/{address}/cap', status: live, evidence: 'GET 200 JSON; PUT 401 without credentials'}
+  - {name: health, host: 'https://*.apimesh.xyz', endpoint: 'GET /health', status: live, evidence: '200 {"status":"ok"} on every subdomain including retired ones'}
+sla:
+  published: false
+  note: 'Terms of Service §9: "We do not guarantee uptime, accuracy of API responses, or fitness for a particular purpose." No SLA.'
+status_page: null
+status_page_note: No status page exists (/status 401; no status.apimesh.xyz; none linked from the site, README or legal pages).
+change_notice:
+  terms: '30 days notice by email for material changes to the Terms of Service and Privacy Policy (Terms §1/§11, Privacy §11)'
+  api: none published
+repository_activity:
+  last_push: '2026-05-11'
+  last_npm_release: '2026-04-29'
+  note: 'github.com/mbeato/APIMesh has not been pushed since the pivot commit; the operator''s newer work (agentcontext-mcp 2026-08-22, recense, stitch) is in separate repositories.'

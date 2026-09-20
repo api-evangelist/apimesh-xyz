@@ -1,18 +1,163 @@
 aid: apimesh-xyz
 name: APIMesh
-description: 'APIMesh is a company surfaced via the API Evangelist harvest backlog (source: a2a-registry)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  APIMesh (apimesh.xyz) is a solo, MIT-licensed developer-tools project by Maximus Beato that
+  launched in February 2026 as a pay-per-call web-analysis API marketplace — SEO audits, security
+  headers, email verification, tech-stack detection and dozens of autonomously generated
+  endpoints, each on its own subdomain and payable by x402 (USDC on Base), Stripe Machine
+  Payments Protocol or prepaid API-key credits, with a 76-tool MCP server on npm. The marketplace
+  was retired on 2026-05-11 and the domain now hosts two free "wedge" tools: agentsmd (normalize
+  AGENTS.md, CLAUDE.md and other agent rules files via POST /normalize, a CLI and an MCP server)
+  and stripesig (a webhook signature debugger for Stripe, GitHub, Slack and Shopify via POST
+  /check). The A2A agent card, ai-plugin manifest, OpenAPI, llms.txt and x402/MPP discovery
+  documents are still served and describe the retired surface.
+image: https://apimesh.xyz/logo.svg
 url: https://raw.githubusercontent.com/api-evangelist/apimesh-xyz/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:a2a-registry
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: 'enrichment pass 2026-09-19: full contract discovery run; agent card, two OpenAPIs, llms.txt, ai-plugin, x402/MPP discovery and npm MCP server harvested; marketplace retired 2026-05-11, two free wedge APIs live'
 specificationVersion: '0.20'
 created: '2026-09-19'
 modified: '2026-09-19'
 tags:
-- Company
-apis: []
+- Web Analysis
+- SEO
+- Web Security
+- Email Verification
+- Developer Tools
+- Micropayments
+- x402
+- MCP
+- Agent-native
+- Webhooks
+- AI Coding Agents
+- Open Source
+apis:
+- name: APIMesh Web Analysis APIs
+  description: >-
+    The pay-per-call marketplace surface: one API per subdomain (https://{api-name}.apimesh.xyz)
+    with free GET /health, GET / and GET /preview and paid /check, /analyze, /build, /generate,
+    /validate and /scan endpoints priced $0.001-$0.05 per call via x402, MPP or Bearer API key.
+    The served OpenAPI declares 23 servers and the three free paths only. Retired 2026-05-11:
+    every declared server now returns 404 {"error":"Unknown API"}; the apex still answers the
+    free wallet endpoints (GET /wallet/{address}, GET /wallet/{address}/history, PUT
+    /wallet/{address}/cap) that the MCP server's wallet tools use.
+  humanURL: https://github.com/mbeato/APIMesh#all-apis
+  baseURL: https://apimesh.xyz
+  x-base-url-note: >-
+    The marketplace base is a per-API pattern, https://{api-name}.apimesh.xyz, and repair-api-bases.py
+    (2026-09-19) proposed https://email-verify.apimesh.xyz from the served OpenAPI servers[]. Not applied:
+    all 23 declared hosts return 404 {"error":"Unknown API"} since the 2026-05-11 retirement, while the
+    apex is a real API host that still answers GET /wallet/{address} and /wallet/{address}/history and
+    reverse-proxies every non-static path to the application. A dead host would be a worse base than
+    the live one.
+  tags:
+  - Web Analysis
+  - SEO
+  - Web Security
+  - Micropayments
+  - x402
+  properties:
+  - type: OpenAPI
+    url: openapi/apimesh-xyz-openapi.yml
+  - type: OpenAPI
+    name: OpenAPI (provider-hosted, /.well-known/openapi.json)
+    url: https://apimesh.xyz/.well-known/openapi.json
+  - type: OpenAPI
+    name: OpenAPI (provider-hosted, /openapi.json — 4 wedge servers, empty paths)
+    url: https://apimesh.xyz/openapi.json
+  - type: Documentation
+    url: https://github.com/mbeato/APIMesh#readme
+  - type: APIReference
+    url: https://apimesh.xyz/.well-known/openapi.json
+  - type: Discovery
+    name: x402 discovery document
+    url: https://apimesh.xyz/.well-known/x402.json
+  - type: Discovery
+    name: x402 resources list
+    url: https://apimesh.xyz/.well-known/x402
+  - type: Discovery
+    name: Machine Payments Protocol manifest
+    url: https://apimesh.xyz/.well-known/mpp
+  - type: Overlay
+    url: overlays/apimesh-xyz-openapi-overlay.yaml
+  - type: SourceCode
+    url: https://github.com/mbeato/APIMesh
+- name: agentsmd (agentcontext) API
+  description: >-
+    Live, free, unauthenticated endpoint behind the agentsmd wedge: POST /normalize accepts
+    {source_format, content, targets} and returns {files, warnings, detected_formats},
+    converting between AGENTS.md, CLAUDE.md, GEMINI.md, .cursor/rules/*.mdc, .windsurf/rules/*.md,
+    .clinerules/*.md and CONVENTIONS.md. Rate-limited 30 requests per 60 s per IP with
+    X-RateLimit-* headers. The same conversion ships as the @mbeato/agentcontext CLI/library and
+    the @mbeato/agentcontext-mcp server. Not described by any served OpenAPI.
+  humanURL: https://agentsmd.apimesh.xyz/
+  baseURL: https://agentsmd.apimesh.xyz
+  tags:
+  - AI Coding Agents
+  - Developer Tools
+  - Open Source
+  properties:
+  - type: Documentation
+    url: https://github.com/mbeato/agentcontext#hosted-endpoint
+  - type: Playground
+    url: https://agentsmd.apimesh.xyz/
+  - type: CLI
+    url: cli/apimesh-xyz-cli.yml
+  - type: SourceCode
+    url: https://github.com/mbeato/APIMesh/tree/main/apis/agentcontext
+  - type: Discovery
+    name: per-API MPP manifest
+    url: https://agentsmd.apimesh.xyz/.well-known/mpp
+- name: stripesig Webhook Signature Debugger API
+  description: >-
+    Live, free, unauthenticated endpoint behind the stripesig wedge: POST /check accepts
+    {provider (stripe|github|slack|shopify), secret, raw_body, headers, tolerance_seconds?},
+    recomputes the provider's HMAC-SHA256 webhook signature and returns a plain-English reason
+    the received signature did not verify. Rate-limited 60 requests per 60 s per IP with
+    X-RateLimit-* headers. Not described by any served OpenAPI.
+  humanURL: https://stripesig.apimesh.xyz/
+  baseURL: https://stripesig.apimesh.xyz
+  tags:
+  - Webhooks
+  - Developer Tools
+  - Open Source
+  properties:
+  - type: Playground
+    url: https://stripesig.apimesh.xyz/
+  - type: SourceCode
+    url: https://github.com/mbeato/APIMesh/tree/main/apis/sigdebug
+  - type: Discovery
+    name: per-API MPP manifest
+    url: https://stripesig.apimesh.xyz/.well-known/mpp
+- name: APIMesh MCP Server
+  description: >-
+    @mbeato/apimesh-mcp-server (npm, v1.8.2, 2026-04-26; io.github.mbeato/apimesh in the official
+    MCP registry) — a local stdio MCP server with 76 tools (74 web-analysis tools plus
+    wallet_usage and wallet_set_cap) whose tools call the pay-per-call hosts on *.apimesh.xyz
+    and the wallet endpoints on apimesh.xyz. No remote MCP endpoint exists (mcp.apimesh.xyz was
+    retired). The tools' upstream hosts have been retired since 2026-05-11, so calls return 404;
+    the package remains installable. A second stdio server, @mbeato/agentcontext-mcp, exposes
+    the agentsmd conversion as two tools.
+  humanURL: https://www.npmjs.com/package/@mbeato/apimesh-mcp-server
+  baseURL: https://apimesh.xyz
+  tags:
+  - MCP
+  - Agent-native
+  - x402
+  properties:
+  - type: MCPServer
+    url: mcp/apimesh-xyz-mcp.yml
+  - type: MCPServer
+    name: npm package (stdio)
+    url: https://www.npmjs.com/package/@mbeato/apimesh-mcp-server
+  - type: ToolCrosswalk
+    url: mcp/apimesh-xyz-tool-crosswalk.yml
+  - type: Documentation
+    url: https://github.com/mbeato/APIMesh#install-the-mcp-server
+  - type: SourceCode
+    url: https://github.com/mbeato/APIMesh/tree/main/mcp-server
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -21,3 +166,98 @@ maintainers:
 common:
 - type: Website
   url: https://apimesh.xyz/
+- type: Documentation
+  url: https://github.com/mbeato/APIMesh#readme
+- type: APIReference
+  url: https://apimesh.xyz/.well-known/openapi.json
+- type: GettingStarted
+  url: https://github.com/mbeato/APIMesh#quick-start
+- type: Support
+  url: https://github.com/mbeato/APIMesh/issues
+- type: GitHub
+  url: https://github.com/mbeato
+- type: SourceCode
+  url: https://github.com/mbeato/APIMesh
+- type: Roadmap
+  url: https://github.com/mbeato/APIMesh/blob/main/.planning/ROADMAP.md
+- type: Pricing
+  name: Per-call price list (README)
+  url: https://github.com/mbeato/APIMesh#all-apis
+- type: SignUp
+  url: https://apimesh.xyz/signup
+- type: Login
+  url: https://apimesh.xyz/login
+- type: Console
+  url: https://apimesh.xyz/dashboard
+- type: Playground
+  name: agentsmd live demo
+  url: https://agentsmd.apimesh.xyz/
+- type: Playground
+  name: stripesig live demo
+  url: https://stripesig.apimesh.xyz/
+- type: TermsOfService
+  url: https://apimesh.xyz/legal/terms
+- type: PrivacyPolicy
+  url: https://apimesh.xyz/legal/privacy
+- type: Legal
+  name: Acceptable Use Policy
+  url: https://apimesh.xyz/legal/acceptable-use
+- type: Legal
+  name: Refund and Credit Policy
+  url: https://apimesh.xyz/legal/refund
+- type: Legal
+  name: Cookie Disclosure
+  url: https://apimesh.xyz/legal/cookies
+- type: DataSubjectRequest
+  url: https://apimesh.xyz/legal/privacy
+- type: NoticeAndAction
+  url: https://apimesh.xyz/legal/abuse
+- type: AgentCard
+  url: a2a/apimesh-xyz-a2a.yml
+- type: AgentCard
+  name: A2A agent card (provider-hosted)
+  url: https://apimesh.xyz/.well-known/agent-card.json
+- type: WellKnown
+  url: well-known/apimesh-xyz-well-known.yml
+- type: LLMsTxt
+  url: llms/apimesh-xyz-llms.txt
+- type: LLMsTxt
+  name: llms.txt (provider-hosted)
+  url: https://apimesh.xyz/llms.txt
+- type: MCPServer
+  url: mcp/apimesh-xyz-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/apimesh-xyz-tool-crosswalk.yml
+- type: Packages
+  url: packages/apimesh-xyz-packages.yml
+- type: SDKs
+  url: packages/apimesh-xyz-packages.yml
+- type: CLI
+  url: cli/apimesh-xyz-cli.yml
+- type: Overlay
+  url: overlays/apimesh-xyz-openapi-overlay.yaml
+- type: Conformance
+  url: conformance/apimesh-xyz-conformance.yml
+- type: ErrorCatalog
+  url: errors/apimesh-xyz-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/apimesh-xyz-lifecycle.yml
+- type: Authentication
+  url: authentication/apimesh-xyz-authentication.yml
+- type: DomainSecurity
+  url: security/apimesh-xyz-domain-security.yml
+- type: Conventions
+  url: conventions/apimesh-xyz-conventions.yml
+- type: RegulatoryPosture
+  url: regulatory/apimesh-xyz-regulatory-posture.yml
+- type: ChangeLog
+  url: changelog/apimesh-xyz-changelog.yml
+- type: Plans
+  url: plans/apimesh-xyz-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/apimesh-xyz-rate-limits.yml
+x-enrichment:
+  date: '2026-09-19'
+  status: enriched
+  artifacts_added: 31
+  pass: local-v3

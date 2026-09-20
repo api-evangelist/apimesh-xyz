@@ -1,0 +1,350 @@
+generated: '2026-09-19'
+method: derived
+source: mcp/apimesh-xyz-mcp-tools.json + openapi/apimesh-xyz-openapi.yml + well-known/apimesh-xyz-x402-resources.json
+summary: 'The published OpenAPI (/.well-known/openapi.json) declares only the free GET /, GET /health and GET /preview
+  paths, with no operationIds, across 23 servers. Every one of the 76 MCP tools calls a PAID path (GET/POST /check,
+  /analyze, /build, /generate, /validate, /scan ...) that the OpenAPI never describes, so no tool binds to a REST
+  operation in the contract. The paid paths are enumerated only by the x402 resources list. Result: 0 of 76 tools
+  are bound; 76 are MCP-only relative to the contract; all 3 OpenAPI operations are REST-only (no tool exposes /health,
+  / or /preview). This crosswalk is a divergence record, not a binding table. Liveness: every backing host except
+  the apex /wallet endpoints was retired 2026-05-11 and returns 404.'
+surfaces:
+  openapi:
+    file: openapi/apimesh-xyz-openapi.yml
+    source: https://apimesh.xyz/.well-known/openapi.json
+    operations: 3
+    operation_ids: 0
+    servers: 23
+    servers_live: 0
+  x402_resources:
+    file: well-known/apimesh-xyz-x402-resources.json
+    paid_endpoints: 21
+  mcp:
+    file: mcp/apimesh-xyz-mcp.yml
+    transport: stdio
+    tools: 76
+    tools_list_gated: false
+    tools_list_method: parsed from server.ts source (binary not executed)
+  graphql: null
+coverage:
+  tools_named: 76
+  tools_bound: 0
+  mcp_only: 76
+  rest_ops_total: 3
+  rest_ops_with_tool: 0
+crosswalk: []
+mcp_only:
+- tool: web_checker
+  reason: endpoint appears in /.well-known/x402 resources; host now 404 Unknown API
+  backing_endpoint: GET https://check.apimesh.xyz/check
+  confidence: high
+- tool: http_status_checker
+  reason: endpoint appears in /.well-known/x402 resources; host now 404 Unknown API
+  backing_endpoint: GET https://http-status-checker.apimesh.xyz/check
+  confidence: high
+- tool: favicon_checker
+  reason: endpoint appears in /.well-known/x402 resources; host now 404 Unknown API
+  backing_endpoint: GET https://favicon-checker.apimesh.xyz/check
+  confidence: high
+- tool: microservice_health_check
+  reason: endpoint appears in /.well-known/x402 resources; host now 404 Unknown API
+  backing_endpoint: POST https://microservice-health-check.apimesh.xyz/check
+  confidence: high
+- tool: robots_txt_parser
+  reason: endpoint appears in /.well-known/x402 resources; host now 404 Unknown API
+  backing_endpoint: GET https://robots-txt-parser.apimesh.xyz/analyze
+  confidence: high
+- tool: core_web_vitals
+  reason: endpoint appears in /.well-known/x402 resources; host now 404 Unknown API
+  backing_endpoint: GET https://core-web-vitals.apimesh.xyz/check
+  confidence: high
+- tool: security_headers
+  reason: endpoint appears in /.well-known/x402 resources; host now 404 Unknown API
+  backing_endpoint: GET https://security-headers.apimesh.xyz/check
+  confidence: high
+- tool: redirect_chain
+  reason: endpoint appears in /.well-known/x402 resources; host now 404 Unknown API
+  backing_endpoint: GET https://redirect-chain.apimesh.xyz/check
+  confidence: high
+- tool: email_security
+  reason: endpoint appears in /.well-known/x402 resources; host now 404 Unknown API
+  backing_endpoint: GET https://email-security.apimesh.xyz/check
+  confidence: high
+- tool: seo_audit
+  reason: endpoint appears in /.well-known/x402 resources; host now 404 Unknown API
+  backing_endpoint: GET https://seo-audit.apimesh.xyz/check
+  confidence: high
+- tool: indexability_checker
+  reason: endpoint appears in /.well-known/x402 resources; host now 404 Unknown API
+  backing_endpoint: GET https://indexability.apimesh.xyz/check
+  confidence: high
+- tool: brand_assets
+  reason: endpoint appears in /.well-known/x402 resources; host now 404 Unknown API
+  backing_endpoint: GET https://brand-assets.apimesh.xyz/check
+  confidence: high
+- tool: email_verify
+  reason: endpoint appears in /.well-known/x402 resources; host now 404 Unknown API
+  backing_endpoint: GET https://email-verify.apimesh.xyz/check
+  confidence: high
+- tool: tech_stack
+  reason: endpoint appears in /.well-known/x402 resources; host now 404 Unknown API
+  backing_endpoint: GET https://tech-stack.apimesh.xyz/check
+  confidence: high
+- tool: wallet_usage
+  reason: apex /wallet/{address} endpoint, live 200, not in OpenAPI
+  backing_endpoint: GET https://apimesh.xyz/wallet/{address}
+  confidence: high
+- tool: web_resource_validator
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://web-resource-validator.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: website_security_header_info
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://website-security-header-info.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: website_vulnerability_scan
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://website-vulnerability-scan.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: mock_jwt_generator
+  reason: endpoint appears in /.well-known/x402 resources; host now 404 Unknown API
+  backing_endpoint: POST https://mock-jwt-generator.apimesh.xyz/generate
+  confidence: high
+- tool: regex_builder
+  reason: endpoint appears in /.well-known/x402 resources; host now 404 Unknown API
+  backing_endpoint: POST https://regex-builder.apimesh.xyz/test
+  confidence: high
+- tool: status_code_checker
+  reason: endpoint appears in /.well-known/x402 resources; host now 404 Unknown API
+  backing_endpoint: GET https://status-code-checker.apimesh.xyz/check
+  confidence: high
+- tool: swagger_docs_creator
+  reason: endpoint appears in /.well-known/x402 resources; host now 404 Unknown API
+  backing_endpoint: POST https://swagger-docs-creator.apimesh.xyz/generate
+  confidence: high
+- tool: user_agent_analyzer
+  reason: endpoint appears in /.well-known/x402 resources; host now 404 Unknown API
+  backing_endpoint: GET https://user-agent-analyzer.apimesh.xyz/analyze
+  confidence: high
+- tool: yaml_validator
+  reason: endpoint appears in /.well-known/x402 resources; host now 404 Unknown API
+  backing_endpoint: POST https://yaml-validator.apimesh.xyz/validate
+  confidence: high
+- tool: wallet_set_cap
+  reason: apex /wallet/{address} endpoint, live 200, not in OpenAPI
+  backing_endpoint: PUT https://apimesh.xyz/wallet/{address}/cap
+  confidence: high
+- tool: subdomain_vulnerability_rankings
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://subdomain-vulnerability-rankings.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: csp_policy_heuristics
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://csp-policy-heuristics.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: ssl_tls_risk_analyzer
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://ssl-tls-risk-analyzer.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: subdomain_vulnerability_ranking
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://subdomain-vulnerability-ranking.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: subdomain_exposure_score
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://subdomain-exposure-score.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: ip_infrastructure_analyst
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://ip-infrastructure-analyst.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: subdomain_exposure_scorer
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://subdomain-exposure-scorer.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: ssl_tls_threat_assessment
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://ssl-tls-threat-assessment.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: privacy_policy_qualify
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://privacy-policy-qualify.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: dns_propagation_mapper
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://dns-propagation-mapper.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: ip_infrastructure_analyzer
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://ip-infrastructure-analyzer.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: ip_geolocation_enrichment
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://ip-geolocation-enrichment.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: website_authenticity_assessment
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://website-authenticity-assessment.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: ssl_and_tls_hardening_score
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://ssl-and-tls-hardening-score.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: security_headers_checker
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://security-headers-checker.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: subdomain_exposure_ranking
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://subdomain-exposure-ranking.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: ssl_tls_hardening_forecast
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://ssl-tls-hardening-forecast.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: subdomain_exposure_rankings
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://subdomain-exposure-rankings.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: ssl_tls_expiry_forecast
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://ssl-tls-expiry-forecast.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: network_route_mapper
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://network-route-mapper.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: subdomain_exposure_heatmap
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://subdomain-exposure-heatmap.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: dns_propagation_simulator
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://dns-propagation-simulator.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: ssl_tls_configuration_ranker
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://ssl-tls-configuration-ranker.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: privacy_policy_enricher
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://privacy-policy-enricher.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: privacy_risk_score
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://privacy-risk-score.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: http_method_enumeration
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://http-method-enumeration.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: web_misconfiguration_scan
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://web-misconfiguration-scan.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: dependency_license_audit
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://dependency-license-audit.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: ssl_tls_configuration_forecast
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://ssl-tls-configuration-forecast.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: subdomain_risk_ranking
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://subdomain-risk-ranking.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: content_shuffle_detector
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://content-shuffle-detector.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: api_schema_diff
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://api-schema-diff.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: api_linting
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://api-linting.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: port_scanner_aggregate
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://port-scanner-aggregate.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: cdn_infrastructure_enricher
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://cdn-infrastructure-enricher.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: web_configuration_audit
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://web-configuration-audit.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: subdomain_vulnerability_ranker
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://subdomain-vulnerability-ranker.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: ssl_tls_inception_score
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://ssl-tls-inception-score.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: dns_propagation_heatmap
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://dns-propagation-heatmap.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: api_schema_delta
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://api-schema-delta.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: port_scanner
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://port-scanner.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: ssl_tls_hardening_assessor
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://ssl-tls-hardening-assessor.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: api_endpoint_discovery
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://api-endpoint-discovery.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: api_response_heuristics
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://api-response-heuristics.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: api_standard_compliance
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://api-standard-compliance.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: content_security_policy_check
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://content-security-policy-check.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: cross_origin_resource_policymapper
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://cross-origin-resource-policymapper.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: dns_propagation_inspector
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://dns-propagation-inspector.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: performance_security_compliance_report
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://performance-security-compliance-report.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: site_security_baseline
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://site-security-baseline.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+- tool: ssl_expiry_forecast
+  reason: brain-generated API; host retired 2026-05-11
+  backing_endpoint: https://ssl-expiry-forecast.apimesh.xyz/... (host retired; not in x402 resources)
+  confidence: medium
+rest_only:
+- operation: GET /
+  summary: API info and available endpoints
+  servers: all 23 (retired)
+- operation: GET /health
+  summary: Health check
+  note: still answers 200 on every *.apimesh.xyz host via the wildcard router
+- operation: GET /preview
+  summary: Free preview — limited results, no payment required
+  note: 404 on every host since the retirement

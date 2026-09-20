@@ -1,0 +1,55 @@
+generated: '2026-09-19'
+method: searched
+source: https://github.com/mbeato/agentcontext#quickstart
+docs: https://github.com/mbeato/agentcontext#readme
+name: agentcontext
+package: '@mbeato/agentcontext'
+version: 0.1.2
+published: '2026-04-29'
+registry: https://www.npmjs.com/package/@mbeato/agentcontext
+summary: >-
+  The CLI behind the agentsmd wedge (agentsmd.apimesh.xyz): detects every AI coding tool's
+  rules-file format in a repository, parses them into one intermediate representation, and
+  renders whichever targets you ask for so AGENTS.md, CLAUDE.md, GEMINI.md, .cursor/rules/*.mdc,
+  .windsurf/rules/*.md, .clinerules/*.md and CONVENTIONS.md stay in sync. It runs entirely on the
+  local filesystem; the hosted POST /normalize endpoint and the @mbeato/agentcontext-mcp server
+  perform the same conversion. The retired marketplace's apimesh-mcp binary is an MCP server, not
+  an interactive CLI, and is catalogued in mcp/ and packages/ instead.
+install:
+- method: npx
+  command: npx @mbeato/agentcontext <command>
+- method: bunx
+  command: bunx @mbeato/agentcontext sync
+  source: https://apimesh.xyz/ (homepage install snippet)
+- method: npm
+  command: npm install -g @mbeato/agentcontext
+  note: inferred from the package having a bin; the README only shows npx/bunx
+commands:
+- name: inspect
+  usage: agentcontext inspect
+  description: List the agent-context formats detected in the current repository.
+- name: sync
+  usage: agentcontext sync --write --shims claude,cursor,cline,windsurf,gemini,aider
+  description: Detect everything, normalize to AGENTS.md, and write per-tool shim files for the named targets. Without --write it is a dry run.
+  flags:
+  - {flag: --write, description: write files instead of printing the plan}
+  - {flag: --shims, description: comma-separated targets (claude, cursor, cline, windsurf, gemini, aider)}
+- name: convert
+  usage: agentcontext convert --from cursor-mdc --to agents-md --in .cursor/rules/style.mdc
+  description: Convert one file from one format to another explicitly.
+  flags:
+  - {flag: --from, description: 'source format id (agents-md, claude-md, gemini-md, cursor-mdc, cursorrules, windsurf-rules, windsurfrules, clinerules, clinerules-dir, conventions-md)'}
+  - {flag: --to, description: target format id}
+  - {flag: --in, description: input file path}
+formats:
+  read_write: [AGENTS.md, CLAUDE.md, GEMINI.md, .cursor/rules/*.mdc, .windsurf/rules/*.md, .clinerules/*.md, CONVENTIONS.md]
+  read_only: [.cursorrules, .windsurfrules, .clinerules (single file), .aider.conf.yml (read: list only)]
+warnings: Lossy conversions emit numbered warnings W001-W099 (e.g. cursor-mdc -> agents-md collapses activation modes into prose); lossless same-format pairs round-trip byte-identical after canonicalization.
+key_flows:
+- name: Keep every agent rules file in sync from one AGENTS.md
+  steps: [agentcontext inspect, 'agentcontext sync --write --shims claude,cursor,cline,windsurf,gemini,aider']
+- name: One-off conversion
+  steps: ['agentcontext convert --from <fmt> --to <fmt> --in <file>']
+- name: Same conversion without installing anything
+  steps: ['POST https://agentsmd.apimesh.xyz/normalize {source_format, content, targets}']
+status: v0.1.2 — early; the README lists nested AGENTS.md walk-up, .claude/rules/*.md path-scoped rules and a GitHub App as not yet built.

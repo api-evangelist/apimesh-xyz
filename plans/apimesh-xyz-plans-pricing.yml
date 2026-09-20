@@ -1,0 +1,65 @@
+generated: '2026-09-19'
+method: searched
+source: https://apimesh.xyz/llms.txt
+docs:
+- https://github.com/mbeato/APIMesh#all-apis
+- https://apimesh.xyz/legal/terms
+- https://apimesh.xyz/legal/refund
+- https://mbeato.dev/work/apimesh
+plan_count: 2
+currency: USD
+model: 'Pay-per-call micropayments (prepaid Stripe credits, x402 USDC on Base, or Stripe MPP) for the marketplace APIs; free for the two wedge tools'
+note: >-
+  There is no pricing page (/pricing 401). Prices are listed per endpoint in llms.txt, the
+  x402 discovery document, the MPP manifest and the README, all denominated in USD per call.
+  The provider's own retrospective (RETIRED.md, mbeato.dev/work/apimesh) records that the
+  marketplace took $0.00 in revenue and that the priced endpoints were retired on 2026-05-11;
+  the prices below are what is still served, not what can be bought today. The wedge tools
+  that actually run are free with no signup.
+plans:
+- id: pay-per-call
+  name: Pay-per-call credits
+  price: null
+  currency: USD
+  period: per call
+  description: 'Prepaid credit balance bought at https://apimesh.xyz/signup via Stripe Checkout, or per-request payment via x402 (USDC, Base mainnet, Coinbase CDP facilitator) or MPP; each API call deducts its listed rate.'
+  included: ['free GET /preview on most APIs (limited results)', 'free GET /health and GET / on every API', 'free wallet spend/history/cap endpoints']
+  terms: ['credits never expire', 'credits are non-refundable and non-transferable', 'billing errors and duplicate charges corrected', 'commercial use of responses permitted; reselling raw access prohibited']
+  per_call_prices:
+    range: '$0.001 - $0.05'
+    source: https://apimesh.xyz/llms.txt
+    endpoints:
+    - {api: email-verify, price: 0.001}
+    - {api: tech-stack, price: 0.003}
+    - {api: mock-jwt-generator, price: 0.001}
+    - {api: email-security, price: 0.01}
+    - {api: robots-txt-parser, price: 0.002}
+    - {api: web-checker, price: 0.005}
+    - {api: seo-audit, price: 0.003}
+    - {api: brand-assets, price: 0.002}
+    - {api: user-agent-analyzer, price: 0.002}
+    - {api: redirect-chain, price: 0.001}
+    - {api: regex-builder, price: 0.005}
+    - {api: swagger-docs-creator, price: 0.002}
+    - {api: core-web-vitals, price: 0.005}
+    - {api: web-resource-validator, price: 0.001}
+    - {api: status-code-checker, price: 0.001}
+    - {api: website-security-header-info, price: 0.01}
+    - {api: yaml-validator, price: 0.002}
+    - {api: favicon-checker, price: 0.002}
+    - {api: security-headers, price: 0.005}
+    - {api: http-status-checker, price: 0.002}
+    - {api: website-vulnerability-scan, price: 0.05}
+    - {api: indexability, price: 0.001}
+    - {api: microservice-health-check, price: 0.003}
+    - {api: 'agentcontext / agentsmd / sigdebug / stripesig (as listed in /openapi.json x-apimesh-apis)', price: 0.01}
+  status: 'listed but not purchasable — all priced hosts return 404 since 2026-05-11'
+- id: free-wedges
+  name: Free wedge tools
+  price: 0
+  currency: USD
+  period: null
+  description: 'agentsmd (POST /normalize) and stripesig (POST /check) — "free, open source, MIT", no signup, no key; rate-limited per IP.'
+  included: ['POST https://agentsmd.apimesh.xyz/normalize', 'POST https://stripesig.apimesh.xyz/check', 'CLI + MCP packages on npm']
+  limits: '60 requests / 60 s per IP per host (30 for /normalize) — see rate-limits/'
+  source: https://apimesh.xyz/
