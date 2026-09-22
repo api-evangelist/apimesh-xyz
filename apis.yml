@@ -29,6 +29,19 @@ tags:
 - Micropayments
 - x402
 - MCP
+- agent-native
+- Webhook
+- AI Coding Agents
+- Open-Source
+tags_raw:
+- Web Analysis
+- SEO
+- Web Security
+- Email Verification
+- Developer Tools
+- Micropayments
+- x402
+- MCP
 - Agent-native
 - Webhooks
 - AI Coding Agents
@@ -97,6 +110,10 @@ apis:
   tags:
   - AI Coding Agents
   - Developer Tools
+  - Open-Source
+  tags_raw:
+  - AI Coding Agents
+  - Developer Tools
   - Open Source
   properties:
   - type: Documentation
@@ -120,6 +137,10 @@ apis:
   humanURL: https://stripesig.apimesh.xyz/
   baseURL: https://stripesig.apimesh.xyz
   tags:
+  - Webhook
+  - Developer Tools
+  - Open-Source
+  tags_raw:
   - Webhooks
   - Developer Tools
   - Open Source
@@ -143,6 +164,10 @@ apis:
   humanURL: https://www.npmjs.com/package/@mbeato/apimesh-mcp-server
   baseURL: https://apimesh.xyz
   tags:
+  - MCP
+  - agent-native
+  - x402
+  tags_raw:
   - MCP
   - Agent-native
   - x402
