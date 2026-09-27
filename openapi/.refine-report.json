@@ -1,0 +1,51 @@
+{
+  "provider": "apimesh-xyz",
+  "sources": [
+    "_original/apimesh-xyz-openapi.json",
+    "_original/apimesh-xyz-root-openapi.json",
+    "apimesh-xyz-openapi.yml",
+    "well-known/apimesh-xyz-openapi.json"
+  ],
+  "outputs": [
+    "apimesh-xyz-apimesh-api-openapi.yml",
+    "apimesh-xyz-health-api-openapi.yml",
+    "apimesh-xyz-preview-api-openapi.yml"
+  ],
+  "archived": [
+    "archived openapi/apimesh-xyz-openapi.yml",
+    "archived well-known/apimesh-xyz-openapi.json"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "discovered stray spec: well-known/apimesh-xyz-openapi.json",
+    "apimesh-xyz-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apimesh-xyz-openapi.json: tagged paths GET / -> APIMesh",
+    "apimesh-xyz-openapi.json: tagged paths GET /health -> Health",
+    "apimesh-xyz-openapi.json: tagged paths GET /preview -> Preview",
+    "apimesh-xyz-openapi.json: declared missing tag: APIMesh",
+    "apimesh-xyz-openapi.json: declared missing tag: Health",
+    "apimesh-xyz-openapi.json: declared missing tag: Preview",
+    "apimesh-xyz-root-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apimesh-xyz-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apimesh-xyz-openapi.yml: tagged paths GET / -> APIMesh",
+    "apimesh-xyz-openapi.yml: tagged paths GET /health -> Health",
+    "apimesh-xyz-openapi.yml: tagged paths GET /preview -> Preview",
+    "apimesh-xyz-openapi.yml: declared missing tag: APIMesh",
+    "apimesh-xyz-openapi.yml: declared missing tag: Health",
+    "apimesh-xyz-openapi.yml: declared missing tag: Preview",
+    "apimesh-xyz-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apimesh-xyz-openapi.json: tagged paths GET / -> APIMesh",
+    "apimesh-xyz-openapi.json: tagged paths GET /health -> Health",
+    "apimesh-xyz-openapi.json: tagged paths GET /preview -> Preview",
+    "apimesh-xyz-openapi.json: declared missing tag: APIMesh",
+    "apimesh-xyz-openapi.json: declared missing tag: Health",
+    "apimesh-xyz-openapi.json: declared missing tag: Preview",
+    "tag 'APIMesh' spans 3 source specs (apimesh-xyz-openapi.json, apimesh-xyz-openapi.yml, apimesh-xyz-openapi.json): per-path servers applied",
+    "tag 'Health' spans 3 source specs (apimesh-xyz-openapi.json, apimesh-xyz-openapi.yml, apimesh-xyz-openapi.json): per-path servers applied",
+    "tag 'Preview' spans 3 source specs (apimesh-xyz-openapi.json, apimesh-xyz-openapi.yml, apimesh-xyz-openapi.json): per-path servers applied",
+    "apis.yml register: written (+3 apis, 6 total)"
+  ],
+  "skipped": []
+}
