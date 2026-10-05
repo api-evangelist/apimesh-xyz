@@ -1,0 +1,12 @@
+{
+ "url": "https://apimesh.xyz/.well-known/openapi.json",
+ "requested_url": "https://apimesh.xyz/.well-known/openapi.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 5253,
+ "sha256": "3436096e173dac1c6b42122d1fe5ea1a6e0a280947c98286b1b6bf0ae21832f4",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
