@@ -63,3 +63,23 @@ plans:
   included: ['POST https://agentsmd.apimesh.xyz/normalize', 'POST https://stripesig.apimesh.xyz/check', 'CLI + MCP packages on npm']
   limits: '60 requests / 60 s per IP per host (30 for /normalize) — see rate-limits/'
   source: https://apimesh.xyz/
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  units: []
+  plans:
+  - name: Pay-per-call credits
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - other
+  - name: Free wedge tools
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
