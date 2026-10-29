@@ -64,5 +64,123 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-APIMesh (apimesh.xyz) is a solo, MIT-licensed developer-tools project that launched in early 2026 as a pay-per-call web-analysis API marketplace (x402, Stripe MPP and API-key payments, a 76-tool MCP server on npm), retired that marketplace on 2026-05-11, and now hosts two free wedge tools: agentsmd (agent rules-file normalizer, POST /normalize) and stripesig (webhook signature debugger, POST /check). Its A2A agent card, ai-plugin manifest, OpenAPI, llms.txt and x402/MPP discovery documents are still served and describe the retired surface.
-- https://apimesh.xyz/
+APIMesh (apimesh.xyz) is a solo, MIT-licensed developer-tools project by Maximus Beato that launched in February 2026 as a pay-per-call web-analysis API marketplace — SEO audits, security headers, email verification, tech-stack detection and dozens of autonomously generated endpoints, each on its own subdomain and payable by x402 (USDC on Base), Stripe Machine Payments Protocol or prepaid API-key credits, with a 76-tool MCP server on npm. The marketplace was retired on 2026-05-11 and the domain now hosts two free "wedge" tools: agentsmd (normalize AGENTS.md, CLAUDE.md and other agent rules files via POST /normalize, a CLI and an MCP server) and stripesig (a webhook signature debugger for Stripe, GitHub, Slack and Shopify via POST /check). The A2A agent card, ai-plugin manifest, OpenAPI, llms.txt and x402/MPP discovery documents are still served and describe the retired surface.
+
+**Areas:** Web Analysis · SEO · Web Security · Email Verification · Developer Tools · Micropayments · x402 · MCP · Agent-Native · Webhook · AI Coding Agents · Open Source
+
+## APIMesh on APIs.io
+
+Everything profiled for APIMesh is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/apimesh-xyz/](https://apis.io/providers/apimesh-xyz/)** — or go straight to one of the APIs or properties below.
+
+### APIs (6)
+
+- [agentsmd (agentcontext) API](https://apis.io/apis/apimesh-xyz/agentsmd-agentcontext-api/) — Live, free, unauthenticated endpoint behind the agentsmd wedge: POST /normalize accepts {source_format, content, targets} and returns {files, warnings,…
+- [stripesig Webhook Signature Debugger API](https://apis.io/apis/apimesh-xyz/stripesig-webhook-signature-debugger-api/) — Live, free, unauthenticated endpoint behind the stripesig wedge: POST /check accepts {provider (stripe|github|slack|shopify), secret, raw_body, headers,…
+- [APIMesh MCP Server](https://apis.io/apis/apimesh-xyz/apimesh-mcp-server/) — @mbeato/apimesh-mcp-server (npm, v1.8.2, 2026-04-26; io.github.mbeato/apimesh in the official MCP registry) — a local stdio MCP server with 76 tools (74…
+- [APIMesh API Mesh API](https://apis.io/apis/apimesh-xyz/apimesh-xyz-apimesh-api/) — The APIMesh API from APIMesh — 1 operation(s) for apimesh.
+- [APIMesh Health API](https://apis.io/apis/apimesh-xyz/apimesh-xyz-health-api/) — The Health API from APIMesh — 1 operation(s) for health.
+- [APIMesh Preview API](https://apis.io/apis/apimesh-xyz/apimesh-xyz-preview-api/) — The Preview API from APIMesh — 1 operation(s) for preview.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [apimesh-xyz-mcp.yml](https://apis.io/servers/apimesh-xyz/apimesh-xyz-mcp-yml/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Apimesh Xyz Openapi Overlay](https://apis.io/overlays/apimesh-xyz/apimesh-xyz-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Apimesh Xyz Authentication](https://apis.io/security/apimesh-xyz/apimesh-xyz-authentication/)
+- [Apimesh Xyz Domain Security](https://apis.io/security/apimesh-xyz/apimesh-xyz-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Apimesh Xyz Plans Pricing](https://apis.io/plans/apimesh-xyz/apimesh-xyz-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Apimesh Xyz Rate Limits](https://apis.io/rate-limits/apimesh-xyz/apimesh-xyz-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://apimesh.xyz/)
+- [Documentation](https://github.com/mbeato/APIMesh#readme)
+- [Getting started](https://github.com/mbeato/APIMesh#quick-start)
+- [API reference](https://apimesh.xyz/.well-known/openapi.json)
+- [Pricing](https://github.com/mbeato/APIMesh#all-apis)
+- [Sign up](https://apimesh.xyz/signup)
+- [Support](https://github.com/mbeato/APIMesh/issues)
+- [Terms of service](https://apimesh.xyz/legal/terms)
+- [Privacy policy](https://apimesh.xyz/legal/privacy)
+
+## API Evangelist rating
+
+**Kin Score 54.8** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 63.3 |
+| Contract quality | 38.6 |
+| Contract governance | 18.2 |
+| Operational transparency | 57.9 |
+| Developer ergonomics | 66.7 |
+| Access clarity | 65.8 |
+
+**Agent readiness 34.8** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | na |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | conformant |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 32.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/apimesh-xyz/](https://apis.io/providers/apimesh-xyz/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for APIMesh: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/apimesh-xyz/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
